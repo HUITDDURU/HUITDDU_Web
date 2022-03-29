@@ -64,6 +64,12 @@ export const theme: Theme = {
     },
   },
   fonts: {
-      
-  }
+    heading1: `bold 2.25rem 'Noto Sans KR', 'sans-serif'`,
+    heading2: `bold 1.5rem 'Noto Sans KR', 'sans-serif'`,
+    heading3: `bold 1.25rem 'Noto Sans KR', 'sans-serif'`,
+    subtitle: `bold 1.125rem 'Noto Sans KR', 'sans-serif'`,
+    body1: `bold 1.125rem 'Noto Sans KR', 'sans-serif'`,
+    body2: `regular 1.125rem 'Noto Sans KR', 'sans-serif'`,
+    description: `regular 0.75rem 'Noto Sans KR', 'sans-serif'`,
+  },
 };
