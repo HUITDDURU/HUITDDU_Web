@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 
 export const Input = styled.input`
-  color: ${({ theme }) => theme.colors.grayscale.white};
+  color: ${({ theme }) => theme.colors.grayscale.black};
   font: ${({ theme }) => theme.fonts.body2};
   border: none;
   padding: none;
   background-color: transparent;
   outline: none;
+  width: 100%;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.grayscale.gray2};
