@@ -4,12 +4,12 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "../src/utils/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
-import { LoginContainer } from "../src/components/LoginContainer/styles";
+import LoginContainer from "../src/components/LoginContainer";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const queryClient = new QueryClient();
 
-  if (router.pathname.startsWith("/login/")) {
+  if (router.pathname.startsWith("/login")) {
     return (
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
