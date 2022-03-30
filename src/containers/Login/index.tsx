@@ -1,10 +1,13 @@
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import BorderButton from "../../components/Buttons/BorderButton";
 import Button from "../../components/Buttons/Button";
 import Input from "../../components/Input";
 import * as S from "./styles";
 
 const LoginContainer: NextPage = () => {
+  const router = useRouter();
+
   return (
     <div>
       <S.Title>로그인</S.Title>
@@ -15,12 +18,14 @@ const LoginContainer: NextPage = () => {
         </div>
         <div>
           <S.Description>비밀번호</S.Description>
-          <Input placeholder="비밀번호를 입력해주세요..." />
+          <Input placeholder="비밀번호를 입력해주세요..." type="password" />
         </div>
       </S.InputContainer>
       <S.ButtonContainer>
-          <BorderButton>회원가입</BorderButton>
-          <Button>로그인</Button>
+        <BorderButton onClick={() => router.push("/register")}>
+          회원가입
+        </BorderButton>
+        <Button>로그인</Button>
       </S.ButtonContainer>
     </div>
   );

@@ -6,6 +6,7 @@ export const Button = styled.button`
   padding: 8px 12px;
   background-color: ${({ theme }) => theme.colors.primary};
   transition: filter 0.2s ease-in-out;
+  user-select: none;
 
   &:hover {
     filter: brightness(0.9);
