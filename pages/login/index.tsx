@@ -1,7 +1,3 @@
-import { NextPage } from "next";
+import { LoginContainer } from "../../src/containers";
 
-const Login: NextPage = () => {
-  return <div>this is login</div>;
-};
-
-export default Login;
+export default LoginContainer;
