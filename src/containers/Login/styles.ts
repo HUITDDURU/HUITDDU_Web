@@ -25,3 +25,20 @@ export const ButtonContainer = styled.div`
   justify-content: right;
   align-items: center;
 `;
+
+export const Page = styled.div`
+  font: ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.grayscale.gray2};
+`;
+
+export const BottomContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ToLogin = styled.div`
+  & a {
+    font: ${({ theme }) => theme.fonts.body2};
+    color: ${({ theme }) => theme.colors.grayscale.gray2};
+  }
+`;
