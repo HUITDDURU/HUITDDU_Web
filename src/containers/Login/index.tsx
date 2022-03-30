@@ -22,7 +22,7 @@ const LoginContainer: NextPage = () => {
         </div>
       </S.InputContainer>
       <S.ButtonContainer>
-        <BorderButton onClick={() => router.push("/signup/enterinfo")}>
+        <BorderButton onClick={() => router.push("/login/signup/enterinfo")}>
           회원가입
         </BorderButton>
         <Button>로그인</Button>
