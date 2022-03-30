@@ -37,9 +37,17 @@ export const BottomContainer = styled.div`
 `;
 
 export const ToLogin = styled.div`
+  display: flex;
+  align-items: center;
   & a {
+    transition: color 0.2s ease-in-out;
     font: ${({ theme }) => theme.fonts.body2};
     color: ${({ theme }) => theme.colors.grayscale.gray2};
+    align-items: center;
+  }
+  & a:hover {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.grayscale.black};
   }
 `;
 
