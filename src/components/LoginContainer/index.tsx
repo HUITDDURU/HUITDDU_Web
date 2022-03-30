@@ -1,9 +1,9 @@
-import { NextPage } from "next";
 import * as S from "./styles";
 import LogoImage from "../../assets/images/login-logo.png";
 import Image from "next/image";
+import { FC } from "react";
 
-const LoginContainer: NextPage = () => {
+const LoginContainer: FC = ({ children }) => {
   return (
     <S.Container>
       <S.LoginContainer>
@@ -16,6 +16,7 @@ const LoginContainer: NextPage = () => {
             alt="logo"
           />
         </S.LogoContainer>
+        {children}
       </S.LoginContainer>
     </S.Container>
   );
