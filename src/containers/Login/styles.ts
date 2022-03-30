@@ -42,3 +42,18 @@ export const ToLogin = styled.div`
     color: ${({ theme }) => theme.colors.grayscale.gray2};
   }
 `;
+
+export const ImageButton = styled.button`
+  border: solid 1px ${({ theme }) => theme.colors.grayscale.gray1};
+  color: ${({ theme }) => theme.colors.grayscale.gray1};
+  width: 100%;
+  text-align: center;
+  padding: 8px 0px;
+  border-radius: 10px;
+  transition: all 0.2 ease-in-out;
+
+  &:hover {
+    border: solid 1px ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
