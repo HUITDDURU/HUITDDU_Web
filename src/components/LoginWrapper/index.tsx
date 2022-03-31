@@ -1,38 +1,45 @@
 import * as S from "./styles";
 import LogoImage from "../../assets/images/login-logo.png";
 import Image from "next/image";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import gsap, { Power4 } from "gsap";
 
-const LoginContainer: FC = ({ children }) => {
+const LoginWapper: FC = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    gsap.to(containerRef.current, {
-      yPercent: -10,
-      ease: Power4.easeOut,
-      duration: 0.5,
-      opacity: 0,
-      onComplete: () => {
-        setDisplayChildren(children);
+  const onComplete = useCallback(() => {
+    setDisplayChildren(children);
 
-        gsap.fromTo(
-          containerRef.current,
-          {
-            yPercent: 10,
-            duration: 0,
-          },
-          {
-            yPercent: 0,
-            ease: Power4.easeOut,
-            duration: 0.5,
-            opacity: 1,
-          }
-        );
+    gsap.fromTo(
+      containerRef.current,
+      {
+        yPercent: 10,
+        duration: 0,
+        opacity: 0,
       },
-    });
+      {
+        yPercent: 0,
+        ease: Power4.easeOut,
+        duration: 0.5,
+        opacity: 1,
+      }
+    );
   }, [children]);
+
+  useEffect(() => {
+    if (displayChildren === children) {
+      onComplete();
+    } else {
+      gsap.to(containerRef.current, {
+        yPercent: -10,
+        ease: Power4.easeOut,
+        duration: 0.5,
+        opacity: 0,
+        onComplete: onComplete,
+      });
+    }
+  }, [children, displayChildren, onComplete]);
 
   return (
     <S.Container>
@@ -52,4 +59,4 @@ const LoginContainer: FC = ({ children }) => {
   );
 };
 
-export default LoginContainer;
+export default LoginWapper;

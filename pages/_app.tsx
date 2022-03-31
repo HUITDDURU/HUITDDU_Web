@@ -4,7 +4,7 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "../src/utils/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
-import LoginContainer from "../src/components/LoginWrapper";
+import LoginWapper from "../src/components/LoginWrapper";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const queryClient = new QueryClient();
@@ -13,9 +13,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     return (
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
-          <LoginContainer>
+          <LoginWapper>
             <Component {...pageProps} />
-          </LoginContainer>
+          </LoginWapper>
           <Toaster position="top-center" />
         </QueryClientProvider>
       </ThemeProvider>
