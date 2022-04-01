@@ -5,6 +5,7 @@ import { theme } from "../src/utils/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
 import LoginWapper from "../src/components/LoginWrapper";
+import { SignUpContext } from "../src/context/SignUpContext";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const queryClient = new QueryClient();
@@ -13,9 +14,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     return (
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
-          <LoginWapper>
-            <Component {...pageProps} />
-          </LoginWapper>
+          <SignUpContext.Provider value={null}>
+            <LoginWapper>
+              <Component {...pageProps} />
+            </LoginWapper>
+          </SignUpContext.Provider>
           <Toaster position="top-center" />
         </QueryClientProvider>
       </ThemeProvider>
