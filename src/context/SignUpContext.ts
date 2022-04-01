@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import State from "../interface/State";
 
 export interface SignUpContextType {
   email: string;
@@ -8,4 +9,7 @@ export interface SignUpContextType {
   isEmailAuthenticated: boolean;
 }
 
-export const SignUpContext = createContext<SignUpContextType | null>(null);
+export const SignUpContext = createContext<State<SignUpContextType | null>>([
+  null,
+  () => null,
+]);
