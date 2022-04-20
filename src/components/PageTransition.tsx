@@ -18,8 +18,8 @@ const PageTransition: FC = ({ children }) => {
       {
         yPercent: 0,
         ease: Power4.easeOut,
-        stagger: 0.05,
-        duration: 0.1,
+        stagger: 0.1,
+        duration: 0.5,
         opacity: 1,
       }
     );
