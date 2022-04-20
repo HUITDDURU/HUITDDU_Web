@@ -1,3 +1,1 @@
-import { EmailContainer } from "../../../src/containers";
-
-export default EmailContainer;
+export { EmailContainer as default } from "../../../src/containers";

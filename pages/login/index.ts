@@ -1,3 +1,1 @@
-import { LoginContainer } from "../../src/containers";
-
-export default LoginContainer;
+export { LoginContainer as defualt } from "../../src/containers";

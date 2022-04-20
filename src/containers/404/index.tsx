@@ -5,7 +5,7 @@ import * as S from "./styles";
 import Tewmoji from "react-twemoji";
 import Link from "next/link";
 
-const Notfound: NextPage = () => {
+const NotFoundContainer: NextPage = () => {
   return (
     <Fragment>
       <Head>
@@ -31,4 +31,4 @@ const Notfound: NextPage = () => {
   );
 };
 
-export default Notfound;
+export default NotFoundContainer;
