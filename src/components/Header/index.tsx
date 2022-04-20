@@ -18,7 +18,7 @@ const Header = () => {
             <Link href="/exchange" passHref>
               <S.Nav>일기 교환</S.Nav>
             </Link>
-            <Link href="/exchange" passHref>
+            <Link href="/my" passHref>
               <S.Nav>마이 페이지</S.Nav>
             </Link>
           </S.RightContainer>
