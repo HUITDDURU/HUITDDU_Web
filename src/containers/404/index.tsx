@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import * as S from "./styles";
 import Tewmoji from "react-twemoji";
 import Link from "next/link";
+import ANIMATED_CLASS from "../../constant/AnimatedClass";
 
 const NotFoundContainer: NextPage = () => {
   return (
@@ -13,7 +14,7 @@ const NotFoundContainer: NextPage = () => {
       </Head>
       <S.Container>
         <div>
-          <S.Error>404</S.Error>
+          <S.Error className={ANIMATED_CLASS}>404</S.Error>
         </div>
         <Tewmoji
           options={{
@@ -21,11 +22,13 @@ const NotFoundContainer: NextPage = () => {
             ext: ".svg",
           }}
         >
-          <S.Content>페이지를 찾을 수 없습니다. 😢</S.Content>
+          <S.Content className={ANIMATED_CLASS}>
+            페이지를 찾을 수 없습니다. 😢
+          </S.Content>
         </Tewmoji>
-        <S.ToMain>
-          <Link href="/">메인으로</Link>
-        </S.ToMain>
+        <Link href="/" passHref>
+          <S.ToMain className={ANIMATED_CLASS}>메인으로</S.ToMain>
+        </Link>
       </S.Container>
     </Fragment>
   );

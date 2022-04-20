@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,10 +26,14 @@ export const Content = styled.div`
   }
 `;
 
-export const ToMain = styled.div`
-  a {
-    font: ${({ theme }) => theme.fonts.body2};
-    text-decoration: underline;
-    color: ${({ theme }) => theme.colors.grayscale.gray2};
+export const ToMain = styled.a`
+  font: ${({ theme }) => theme.fonts.body2};
+  text-decoration: underline;
+  color: ${({ theme }) => theme.colors.grayscale.gray2};
+  transition: color 0.2s ease-in-out;
+  will-change: color;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.grayscale.black};
   }
 `;
