@@ -17,6 +17,19 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
+const Inner = styled.div`
+  display: flex;
+  width: 1280px;
+  margin: 0 auto;
+  flex: 1;
+`;
+
+const Outer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
 function MyApp({ Component, pageProps, router }: AppProps) {
   const queryClient = new QueryClient();
 
@@ -39,10 +52,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Container>
-          <div>
+          <Outer>
             <Header />
-            <Component {...pageProps} />
-          </div>
+            <Inner>
+              <Component {...pageProps} />
+            </Inner>
+          </Outer>
           <Footer />
         </Container>
         <Toaster position="top-center" />
