@@ -4,6 +4,9 @@ import ANIMATED_CLASS from "../constant/AnimatedClass";
 
 const PageTransition: FC = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);
+  const transitionOffset = 50 as const;
+  const transitionDuration = 0.5;
+  const transitionStagger = 0.1;
 
   const onComplete = useCallback(() => {
     setDisplayChildren(children);
@@ -11,15 +14,15 @@ const PageTransition: FC = ({ children }) => {
     gsap.fromTo(
       `.${ANIMATED_CLASS}`,
       {
-        yPercent: 10,
+        y: transitionOffset,
         duration: 0,
         opacity: 0,
       },
       {
-        yPercent: 0,
+        y: 0,
         ease: Power4.easeOut,
-        stagger: 0.1,
-        duration: 0.5,
+        stagger: transitionStagger,
+        duration: transitionDuration,
         opacity: 1,
       }
     );
@@ -30,10 +33,10 @@ const PageTransition: FC = ({ children }) => {
       onComplete();
     } else {
       gsap.to(`.${ANIMATED_CLASS}`, {
-        yPercent: -10,
+        y: -transitionOffset,
         ease: Power4.easeOut,
-        stagger: 0.1,
-        duration: 0.5,
+        stagger: transitionStagger,
+        duration: transitionDuration,
         opacity: 0,
         onComplete: onComplete,
       });
