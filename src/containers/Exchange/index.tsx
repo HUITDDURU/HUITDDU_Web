@@ -3,14 +3,15 @@ import * as S from "./styles";
 import RandomUser from "../../assets/images/random-user.svg";
 import Friend from "../../assets/images/friend.svg";
 import Image from "next/image";
+import ANIMATED_CLASS from "../../constant/AnimatedClass";
 
 const ExchangeContainer: NextPage = () => {
   return (
     <S.Container>
-      <S.Title>일기 교환 시작하기</S.Title>
+      <S.Title className={ANIMATED_CLASS}>일기 교환 시작하기</S.Title>
       <S.ButtonContainer>
         <S.ButtonWrapper>
-          <S.Button>
+          <S.Button className={ANIMATED_CLASS}>
             <S.ButtonInner>
               <Image src={RandomUser} alt="random user" />
             </S.ButtonInner>
@@ -21,7 +22,7 @@ const ExchangeContainer: NextPage = () => {
               교환 수락을 하게되면 일기 교환이 시작돼요.
             </S.Description>
           </S.Button>
-          <S.Button>
+          <S.Button className={ANIMATED_CLASS}>
             <S.ButtonInner>
               <Image src={Friend} alt="friend" />
             </S.ButtonInner>

@@ -9,6 +9,7 @@ import SignUpProvider from "../src/components/Providers/SignUpProvider";
 import styled from "@emotion/styled";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
+import PageTransition from "../src/components/PageTransition";
 
 const Container = styled.div`
   display: flex;
@@ -55,7 +56,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           <Outer>
             <Header />
             <Inner>
-              <Component {...pageProps} />
+              <PageTransition>
+                <Component {...pageProps} />
+              </PageTransition>
             </Inner>
           </Outer>
           <Footer />
