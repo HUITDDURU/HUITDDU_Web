@@ -217,3 +217,7 @@ input::placeholder,
 img {
   user-select: none;
 }
+::selection {
+  color: #ffffff;
+  background-color: #5855e9;
+}
