@@ -1,5 +1,4 @@
-// import gsap from "gsap";
-// import { useCallback } from "react";
+import React from "react";
 import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import useInput, { EventFilter } from "../../hooks/useInput";
 import * as S from "./styles";
@@ -29,10 +28,6 @@ const FriendContainer = () => {
   };
 
   const [inputProps, [value]] = useInput("", evnetFilter);
-
-  // const wrongCode = useCallback(() => {
-  //   gsap.to("1", {});
-  // }, []);
 
   return (
     <S.Container>
