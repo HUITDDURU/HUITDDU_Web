@@ -1,10 +1,11 @@
 import gsap, { Power4 } from "gsap";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import * as S from "./styles";
 
 const RandomContainer = () => {
   const backdropRef = useRef<HTMLDivElement>(null);
+  const [dot, setDot] = useState(0);
 
   const backdropAnimation = useCallback(() => {
     if (!backdropRef.current) {
@@ -22,13 +23,19 @@ const RandomContainer = () => {
     };
   }, []);
 
+  const nextDot = useCallback(() => {
+    setDot((prev) => (prev + 1) % 3);
+    setTimeout(nextDot, 1000);
+  }, []);
+
   useEffect(() => {
     setTimeout(backdropAnimation, 500);
-  }, [backdropAnimation]);
+    setTimeout(nextDot, 1000);
+  }, [backdropAnimation, nextDot]);
 
   return (
     <S.Container className={ANIMATED_CLASS}>
-      <S.Title>무작위 사용자 찾는중...</S.Title>
+      <S.Title>무작위 사용자 찾는중{".".repeat(dot + 1)}</S.Title>
       <S.ImageContainer>
         <S.Backdrop ref={backdropRef} />
         <S.ProfileImage />
