@@ -42,13 +42,15 @@ const FriendContainer = () => {
       <div className={ANIMATED_CLASS}>
         <S.CodeInput {...inputProps} placeholder="입력해주세요..." />
       </div>
-      <S.Enter
-        className={`${
-          value.toString().length >= maxCodeLength ? "active" : ""
-        }`}
-      >
-        Enter 키로 시작
-      </S.Enter>
+      <div className={ANIMATED_CLASS}>
+        <S.Enter
+          className={`${
+            value.toString().length >= maxCodeLength ? "active" : ""
+          }`}
+        >
+          Enter 키로 시작
+        </S.Enter>
+      </div>
     </S.Container>
   );
 };
