@@ -8,9 +8,11 @@ const MainContainer = () => {
     <S.Container>
       <S.Title>진행중인 일기</S.Title>
       <S.ContentContainer>
+        <S.Right>
+          <Status />
+          <DiaryHint />
+        </S.Right>
         <DiaryMap />
-        <Status />
-        <DiaryHint />
       </S.ContentContainer>
     </S.Container>
   );
