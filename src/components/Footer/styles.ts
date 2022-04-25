@@ -31,6 +31,10 @@ export const Nav = styled.a`
 export const Name = styled.div`
   font: ${({ theme }) => theme.fonts.body2};
   color: ${({ theme }) => theme.colors.grayscale.black};
-  grid-column: 3/ 13;
+  grid-column: 5 / 13;
   text-align: right;
+`;
+
+export const EmptyCar = styled.div`
+  grid-column: 3 / 5;
 `;
