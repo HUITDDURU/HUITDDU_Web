@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const ContentContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 20px;
   flex-direction: row-reverse;
