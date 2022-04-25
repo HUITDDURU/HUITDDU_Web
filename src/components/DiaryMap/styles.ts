@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  grid-row: 1 / 3;
-  grid-column: 2 / 5;
+  grid-row: span 2;
+  grid-column: span 3;
 `;
