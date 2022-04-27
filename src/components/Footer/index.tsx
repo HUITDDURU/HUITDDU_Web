@@ -6,13 +6,11 @@ const Footer = () => {
       <S.Inner>
         <span>
           <S.Nav href="https://github.com/HUITDDURU" rel="noopener noreferrer">
-            <S.Nav>Github</S.Nav>
+            Github
           </S.Nav>
         </span>
         <span>
-          <S.Nav href="https://github.com/HUITDDURU">
-            <S.Nav>이용약관</S.Nav>
-          </S.Nav>
+          <S.Nav href="https://github.com/HUITDDURU">이용약관</S.Nav>
         </span>
         <S.EmptyCar>
           <S.Nav
@@ -20,7 +18,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <S.Nav>Empty Car 체험하기</S.Nav>
+            Empty Car 체험하기
           </S.Nav>
         </S.EmptyCar>
         <S.Name>
