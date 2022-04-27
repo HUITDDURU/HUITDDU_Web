@@ -22,24 +22,24 @@ const Status = () => {
   );
 };
 
-const StartExchange = () => {
-  return (
-    <S.Container>
-      <S.ProfileOuter>
-        <S.ProfileContainer>
-          <S.Profile />
-        </S.ProfileContainer>
-      </S.ProfileOuter>
-      <S.Content>
-        <div>일기 교환 할 사람을</div>
-        <div>정하지 않았습니다.</div>
-      </S.Content>
-      <S.Buttons>
-        <S.Stop>무작위 사람과 교환</S.Stop>
-        <S.Stop>친구와 교환</S.Stop>
-      </S.Buttons>
-    </S.Container>
-  );
-};
+// const StartExchange = () => {
+//   return (
+//     <S.Container>
+//       <S.ProfileOuter>
+//         <S.ProfileContainer>
+//           <S.Profile />
+//         </S.ProfileContainer>
+//       </S.ProfileOuter>
+//       <S.Content>
+//         <div>일기 교환 할 사람을</div>
+//         <div>정하지 않았습니다.</div>
+//       </S.Content>
+//       <S.Buttons>
+//         <S.Stop>무작위 사람과 교환</S.Stop>
+//         <S.Stop>친구와 교환</S.Stop>
+//       </S.Buttons>
+//     </S.Container>
+//   );
+// };
 
 export default Status;
