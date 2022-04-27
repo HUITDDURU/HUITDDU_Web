@@ -1,21 +1,23 @@
 import { useTheme } from "@emotion/react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
 
 const DiaryHint = () => {
   const theme = useTheme();
-  const diarys = useMemo(
-    () =>
+  const [diarys, setDiarys] = useState<string[]>([]);
+  const diaryCount = useMemo(() => 4, []);
+
+  useEffect(() => {
+    setDiarys(
       [
         ...Object.values(theme.colors.sub),
         theme.colors.primary,
         theme.colors.secondary,
-      ].sort(() => (Math.random() > 0.5 ? 1 : -1)),
-    [theme]
-  );
-  const diaryCount = 4;
+      ].sort(() => (Math.random() > 0.5 ? 1 : -1))
+    );
+  }, [theme]);
 
   return (
     <S.Container className={ANIMATED_CLASS}>

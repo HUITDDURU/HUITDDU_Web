@@ -41,6 +41,10 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.colors.primary};
   justify-self: center;
   text-align: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Flex = styled.div`
