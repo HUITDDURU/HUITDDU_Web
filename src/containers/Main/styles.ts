@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Title = styled.div`
   font: ${({ theme }) => theme.fonts.heading1};
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 `;
 
 export const Container = styled.div`

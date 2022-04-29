@@ -47,7 +47,7 @@ const data: Dot[] = [
   },
   {
     userId: 2,
-    diary: getDiary("2022-04-02"),
+    diary: getDiary("2022-04-02T09:00:00"),
     isMine: false,
   },
   {
@@ -102,7 +102,7 @@ const data: Dot[] = [
   },
   {
     userId: 3,
-    diary: getDiary("2022-04-05"),
+    diary: getDiary("2022-04-05T03:00:00"),
     isMine: false,
   },
   {
@@ -113,6 +113,11 @@ const data: Dot[] = [
   {
     userId: 3,
     diary: getDiary("2022-04-07"),
+    isMine: false,
+  },
+  {
+    userId: 4,
+    diary: getDiary("2022-04-07T09:00:00"),
     isMine: false,
   },
 ];
@@ -132,8 +137,8 @@ const DiaryMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const colors = useMemo(
-    () => [...Object.values(theme.colors.sub)],
-    [theme.colors.sub]
+    () => [theme.colors.secondary, ...Object.values(theme.colors.sub)],
+    [theme.colors.secondary, theme.colors.sub]
   );
   const list = useMemo(
     () =>
@@ -169,7 +174,7 @@ const DiaryMap = () => {
 
       const ukeys = Array.from(userMap.keys());
 
-      if (!ukeys.includes(userId)) {
+      if (!ukeys.includes(userId) && !value.isMine) {
         const color = colors[index];
         index = (index + 1) % colors.length;
 
@@ -213,25 +218,19 @@ const DiaryMap = () => {
             };
             const diff = getDiff(elem.diary.date, key);
 
+            const startStyle = {
+              ...style,
+              background: "transparent",
+              borderColor: color,
+            };
+
             return (
               <Fragment key={index}>
                 {isStart && !elem.isMine ? (
                   offset === -1 ? (
-                    <S.StartUp
-                      style={{
-                        ...style,
-                        background: "transparent",
-                        borderColor: color,
-                      }}
-                    />
+                    <S.StartUp style={startStyle} />
                   ) : (
-                    <S.StartDown
-                      style={{
-                        ...style,
-                        background: "transparent",
-                        borderColor: color,
-                      }}
-                    />
+                    <S.StartDown style={startStyle} />
                   )
                 ) : (
                   <S.Line

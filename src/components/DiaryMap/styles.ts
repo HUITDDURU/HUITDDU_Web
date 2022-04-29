@@ -20,7 +20,6 @@ export const Container = styled.div`
 export const MyLine = styled.div`
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   height: 5px;
   border-radius: 100px;
   background-color: ${({ theme }) => theme.colors.primary};
@@ -38,13 +37,13 @@ export const Column = styled.div`
 `;
 
 export const Dot = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors.grayscale.white};
+  border: 2px solid ${({ theme }) => theme.colors.grayscale.white};
   border-radius: 50%;
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   position: absolute;
   left: 0px;
-  transform: translate(-25%, -25%);
+  transform: translate(-4.5px, -4.5px);
   z-index: 2;
 `;
 
@@ -72,7 +71,7 @@ export const StartUp = styled.div`
   background: transparent;
   border-top: 5px solid;
   border-left: 5px solid;
-  border-top-left-radius: 10px;
+  border-top-left-radius: 20px;
 `;
 
 export const StartDown = styled(StartUp)`
@@ -80,6 +79,6 @@ export const StartDown = styled(StartUp)`
   border-left: 5px solid;
   border-top: 0px;
   border-top-left-radius: 0px;
-  border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 20px;
   transform: translateY(calc(-100% + 5px));
 `;
