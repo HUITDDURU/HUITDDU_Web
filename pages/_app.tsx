@@ -4,11 +4,11 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "../src/utils/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
-import LoginWapper from "../src/components/LoginWrapper";
 import styled from "@emotion/styled";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import PageTransition from "../src/components/PageTransition";
+import LoginWrapper from "../src/components/LoginWrapper";
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Inner = styled.div`
+const Inner = styled.main`
   display: flex;
   width: 1280px;
   margin: 0 auto;
@@ -37,9 +37,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     return (
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
-          <LoginWapper>
+          <LoginWrapper>
             <Component {...pageProps} />
-          </LoginWapper>
+          </LoginWrapper>
           <Toaster position="top-center" />
         </QueryClientProvider>
       </ThemeProvider>
