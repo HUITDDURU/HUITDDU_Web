@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { memo } from "react";
 import BorderButton from "../../components/Buttons/BorderButton";
 import Button from "../../components/Buttons/Button";
 import Input from "../../components/Input";
@@ -31,4 +32,4 @@ const LoginContainer: NextPage = () => {
   );
 };
 
-export default LoginContainer;
+export default memo(LoginContainer);

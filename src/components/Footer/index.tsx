@@ -1,3 +1,4 @@
+import { memo } from "react";
 import * as S from "./styles";
 
 const Footer = () => {
@@ -30,4 +31,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import * as S from "./styles";
 
 const Status = () => {
@@ -42,4 +43,4 @@ const Status = () => {
 //   );
 // };
 
-export default Status;
+export default memo(Status);

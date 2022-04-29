@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from "react";
+import { forwardRef, InputHTMLAttributes, memo } from "react";
 import * as S from "./styles";
 
 const Input = forwardRef<
@@ -15,4 +15,4 @@ const Input = forwardRef<
 
 Input.displayName = "Input";
 
-export default Input;
+export default memo(Input);

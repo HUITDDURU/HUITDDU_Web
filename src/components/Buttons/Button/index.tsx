@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import { ButtonHTMLAttributes, forwardRef, memo } from "react";
 import * as S from "./styles";
 
 const Button = forwardRef<
@@ -10,4 +10,4 @@ const Button = forwardRef<
 
 Button.displayName = "Button";
 
-export default Button;
+export default memo(Button);

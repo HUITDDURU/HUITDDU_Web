@@ -3,6 +3,7 @@ import Logo from "../../assets/images/header-logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import BorderButton from "../Buttons/BorderButton";
+import { memo } from "react";
 
 const Header = () => {
   return (
@@ -29,4 +30,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

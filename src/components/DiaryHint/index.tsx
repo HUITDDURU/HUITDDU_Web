@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
@@ -44,4 +44,4 @@ const DiaryHint = () => {
   );
 };
 
-export default DiaryHint;
+export default memo(DiaryHint);

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, memo } from "react";
 import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import * as S from "./styles";
 
@@ -33,4 +33,4 @@ const ExchangeOptionButton: FC<PropsType> = ({
     </Link>
   );
 };
-export default ExchangeOptionButton;
+export default memo(ExchangeOptionButton);

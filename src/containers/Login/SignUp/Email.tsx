@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { memo } from "react";
 import Button from "../../../components/Buttons/Button";
 import Input from "../../../components/Input";
 import * as S from "../styles";
@@ -33,4 +34,4 @@ const EmailContainer: NextPage = () => {
   );
 };
 
-export default EmailContainer;
+export default memo(EmailContainer);

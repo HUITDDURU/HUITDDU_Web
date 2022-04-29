@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import { memo } from "react";
 import Button from "../../../components/Buttons/Button";
 import Input from "../../../components/Input";
 import * as S from "../styles";
@@ -38,4 +39,4 @@ const ProfileContainer: NextPage = () => {
   );
 };
 
-export default ProfileContainer;
+export default memo(ProfileContainer);

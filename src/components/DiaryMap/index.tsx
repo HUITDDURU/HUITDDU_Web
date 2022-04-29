@@ -1,6 +1,6 @@
 import { useTheme } from "@emotion/react";
 import moment from "moment";
-import React, { Fragment, useMemo, useRef } from "react";
+import React, { Fragment, memo, useMemo, useRef } from "react";
 import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import * as S from "./styles";
 
@@ -261,4 +261,4 @@ const DiaryMap = () => {
   );
 };
 
-export default DiaryMap;
+export default memo(DiaryMap);
