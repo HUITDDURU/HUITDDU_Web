@@ -1,3 +1,1 @@
-import { EnterInfoContainer } from "../../../src/containers";
-
-export default EnterInfoContainer;
+export { EnterInfoContainer as default } from "../../../src/containers";
