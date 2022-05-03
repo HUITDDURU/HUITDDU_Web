@@ -8,6 +8,7 @@ export const Title = styled.div`
 export const Container = styled.div`
   padding-top: 80px;
   flex: 1;
+  margin-bottom: 100px;
 `;
 
 export const ContentContainer = styled.div`
