@@ -7,3 +7,4 @@ export { default as NotFoundContainer } from "./404";
 export { default as FriendContainer } from "./Friend";
 export { default as RandomContainer } from "./Random";
 export { default as MainContainer } from "./Main";
+export { default as MyDiaryContainer } from "./MyDiary";
