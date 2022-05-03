@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font: ${({ theme }) => theme.fonts.heading1};
+  font: ${({ theme }) => theme.fonts.heading2};
   color: ${({ theme }) => theme.colors.grayscale.black};
   margin-bottom: 28px;
 `;
