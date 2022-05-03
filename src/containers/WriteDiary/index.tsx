@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import BorderBrandButton from "../../components/Buttons/BorderBrandButton";
 import Button from "../../components/Buttons/Button";
 import Editor from "../../components/Editor";
+import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import * as S from "./styles";
 
 const WriteDiaryContainer = () => {
@@ -101,33 +102,33 @@ const WriteDiaryContainer = () => {
 
   return (
     <S.Container>
-      <S.Title>일기 쓰기</S.Title>
+      <S.Title className={ANIMATED_CLASS}>일기 쓰기</S.Title>
       <S.ContentContainer>
-        <div>
+        <div className={ANIMATED_CLASS}>
           <S.Subtitle>제목</S.Subtitle>
           <S.TitleInput placeholder="제목을 입력해주세요..." maxLength={100} />
         </div>
-        <div>
+        <div className={ANIMATED_CLASS}>
           <S.Subtitle>날짜</S.Subtitle>
           <S.DateOuter>
             <S.DateContainer>{renderDates}</S.DateContainer>
             <span>선택된 날짜 : 2022년 1월 1일</span>
           </S.DateOuter>
         </div>
-        <div>
+        <div className={ANIMATED_CLASS}>
           <S.Subtitle>기분</S.Subtitle>
           <S.FeelingContainer>{renderFeelings}</S.FeelingContainer>
         </div>
-        <div>
+        <div className={ANIMATED_CLASS}>
           <S.Subtitle>사진</S.Subtitle>
           <BorderBrandButton>사진 업로드</BorderBrandButton>
         </div>
-        <div>
+        <div className={ANIMATED_CLASS}>
           <S.Subtitle>내용</S.Subtitle>
           <Editor />
         </div>
       </S.ContentContainer>
-      <S.Buttons>
+      <S.Buttons className={ANIMATED_CLASS}>
         <Button>교환</Button>
       </S.Buttons>
     </S.Container>
