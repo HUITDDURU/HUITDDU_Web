@@ -8,3 +8,4 @@ export { default as FriendContainer } from "./Friend";
 export { default as RandomContainer } from "./Random";
 export { default as MainContainer } from "./Main";
 export { default as MyDiaryContainer } from "./MyDiary";
+export { default as DiaryContainer } from "./Diary";
