@@ -28,3 +28,9 @@ export const Add = styled.button`
 export const Container = styled.div`
   width: 100%;
 `;
+
+export const Pages = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 48px;
+`;
