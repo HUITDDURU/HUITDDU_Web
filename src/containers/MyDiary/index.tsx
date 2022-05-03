@@ -1,12 +1,17 @@
 import MyDiaryList from "../../components/MyDiaryList";
 import MyInfoAside from "../../components/MyInfoAside";
+import * as S from "./styles";
 
 const MyDiaryContainer = () => {
   return (
-    <div>
-      <MyInfoAside />
-      <MyDiaryList />
-    </div>
+    <S.Outer>
+      <S.Container>
+        <S.AsideContainer>
+          <MyInfoAside />
+        </S.AsideContainer>
+        <MyDiaryList />
+      </S.Container>
+    </S.Outer>
   );
 };
 
