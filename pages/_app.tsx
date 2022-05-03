@@ -30,9 +30,11 @@ const Outer = styled.div`
   flex: 1;
 `;
 
-function MyApp({ Component, pageProps, router }: AppProps) {
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: false } },
+});
 
+function MyApp({ Component, pageProps, router }: AppProps) {
   if (router.pathname.startsWith("/login")) {
     return (
       <ThemeProvider theme={theme}>
