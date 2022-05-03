@@ -8,7 +8,7 @@ export const Outer = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 1280px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
