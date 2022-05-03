@@ -1,8 +1,9 @@
+import ANIMATED_CLASS from "../../constant/AnimatedClass";
 import * as S from "./styles";
 
 const MyInfoAside = () => {
   return (
-    <S.Container>
+    <S.Container className={ANIMATED_CLASS}>
       <S.Profile />
       <S.Name>김진근</S.Name>
       <S.Description>한줄 소개</S.Description>
