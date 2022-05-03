@@ -1,5 +1,11 @@
+import MyInfoAside from "../../components/MyInfoAside";
+
 const MyDiaryContainer = () => {
-  return <div></div>;
+  return (
+    <div>
+      <MyInfoAside />
+    </div>
+  );
 };
 
 export default MyDiaryContainer;
