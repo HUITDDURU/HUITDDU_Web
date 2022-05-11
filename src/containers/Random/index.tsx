@@ -1,6 +1,6 @@
 import gsap, { Power4 } from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 const RandomContainer = () => {

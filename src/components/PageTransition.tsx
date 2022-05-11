@@ -1,6 +1,6 @@
 import gsap, { Power4 } from "gsap";
 import { FC, useCallback, useEffect, useState } from "react";
-import ANIMATED_CLASS from "../constant/AnimatedClass";
+import ANIMATED_CLASS from "../constant/animatedClass";
 
 const PageTransition: FC = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);

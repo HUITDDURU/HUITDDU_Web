@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import * as S from "./styles";
 import RandomUser from "../../assets/images/random-user.svg";
 import Friend from "../../assets/images/friend.svg";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import ExchangeOptionButton from "../../components/ExchangeOptionButton";
 
 const ExchangeContainer: NextPage = () => {

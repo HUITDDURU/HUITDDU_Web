@@ -1,6 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { memo, useEffect, useMemo, useState } from "react";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
 

@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
 import moment from "moment";
 import React, { Fragment, memo, useMemo, useRef } from "react";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 export interface Dot {

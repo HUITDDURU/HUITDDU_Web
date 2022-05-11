@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import BorderBrandButton from "../../components/Buttons/BorderBrandButton";
 import Button from "../../components/Buttons/Button";
 import Editor from "../../components/Editor";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 const WriteDiaryContainer = () => {
