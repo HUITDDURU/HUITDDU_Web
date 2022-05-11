@@ -6,7 +6,7 @@ export const Title = styled.div`
   margin-bottom: 28px;
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
   display: flex;
   flex-direction: column;
   row-gap: 18px;
