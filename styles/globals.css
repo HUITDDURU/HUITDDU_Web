@@ -221,3 +221,6 @@ img {
   color: #ffffff;
   background-color: #5855e9;
 }
+:focus-visible {
+  outline: 1px solid #5855e9;
+}
