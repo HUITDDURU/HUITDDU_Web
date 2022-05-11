@@ -1,11 +1,18 @@
 import uri from "../../constant/uri";
 import { requestWithNoToken } from "../../utils/axios";
-import { ReissuanceTokenResponse } from "./interface";
+import { TokenResponse } from "./interface";
 
 const reissuanceToken = (refreshToken: string) => {
-  return requestWithNoToken.put<ReissuanceTokenResponse>(uri.auth, {
+  return requestWithNoToken.put<TokenResponse>(uri.auth, {
     "refresh-token": refreshToken,
   });
 };
 
-export { reissuanceToken };
+const login = (email: string, password: string) => {
+  return requestWithNoToken.post<TokenResponse>(uri.auth, {
+    email,
+    password,
+  });
+};
+
+export { reissuanceToken, login };

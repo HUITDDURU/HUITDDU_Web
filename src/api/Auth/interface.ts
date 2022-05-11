@@ -3,4 +3,4 @@ interface ReissuanceTokenResponse {
   refreshToken: string;
 }
 
-export type { ReissuanceTokenResponse };
+export type { ReissuanceTokenResponse as TokenResponse };
