@@ -2,7 +2,7 @@ import axios from "axios";
 import moment from "moment";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { memo, useMemo, useState } from "react";
+import React, { memo, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import BorderButton from "../../components/Buttons/BorderButton";
 import Button from "../../components/Buttons/Button";
@@ -29,6 +29,8 @@ const LoginContainer: NextPage = () => {
       loginMutation.isLoading,
     [email, loginMutation.isLoading, password]
   );
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,6 +49,9 @@ const LoginContainer: NextPage = () => {
   const onLoginClick = async () => {
     if (!checkValidity()) {
       toast.error("이메일 형식을 확인해주세요.");
+      setLoginInput({ password: "", email: "" });
+      emailRef.current?.focus();
+      return;
     }
 
     try {
@@ -61,10 +66,20 @@ const LoginContainer: NextPage = () => {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 404) {
         toast.error("로그인 실패. 다시 확인해주세요.");
+        setLoginInput((prev) => ({ ...prev, password: "" }));
+        passwordRef.current?.focus();
         return;
       }
 
       toast.error(`${error}`);
+    }
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      onLoginClick();
     }
   };
 
@@ -81,6 +96,7 @@ const LoginContainer: NextPage = () => {
             autoComplete="username"
             type="email"
             onChange={onChange}
+            ref={emailRef}
           />
         </div>
         <div>
@@ -92,6 +108,8 @@ const LoginContainer: NextPage = () => {
             type="password"
             autoComplete="current-password"
             onChange={onChange}
+            ref={passwordRef}
+            onKeyDown={onKeyDown}
           />
         </div>
       </S.InputContainer>
