@@ -9,6 +9,7 @@ import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import PageTransition from "../src/components/PageTransition";
 import LoginWrapper from "../src/components/LoginWrapper";
+import { RecoilRoot } from "recoil";
 
 const Container = styled.div`
   display: flex;
@@ -39,10 +40,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     return (
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
-          <LoginWrapper>
-            <Component {...pageProps} />
-          </LoginWrapper>
-          <Toaster position="top-center" />
+          <RecoilRoot>
+            <LoginWrapper>
+              <Component {...pageProps} />
+            </LoginWrapper>
+            <Toaster position="top-center" />
+          </RecoilRoot>
         </QueryClientProvider>
       </ThemeProvider>
     );
@@ -51,18 +54,20 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <Container>
-          <Outer>
-            <Header />
-            <Inner>
-              <PageTransition>
-                <Component {...pageProps} />
-              </PageTransition>
-            </Inner>
-          </Outer>
-          <Footer />
-        </Container>
-        <Toaster position="top-center" />
+        <RecoilRoot>
+          <Container>
+            <Outer>
+              <Header />
+              <Inner>
+                <PageTransition>
+                  <Component {...pageProps} />
+                </PageTransition>
+              </Inner>
+            </Outer>
+            <Footer />
+          </Container>
+          <Toaster position="top-center" />
+        </RecoilRoot>
       </QueryClientProvider>
     </ThemeProvider>
   );
