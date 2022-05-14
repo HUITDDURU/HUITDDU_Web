@@ -1,15 +1,19 @@
 import { useMutation } from "react-query";
-import { login } from "../api/Auth";
-
-interface LoginInput {
-  email: string;
-  password: string;
-}
+import { login, signUp } from "../api/Auth";
+import { LoginInput, RegisterInput } from "./interface";
 
 const useLogin = () => {
-  return useMutation(({ email, password }: LoginInput) =>
-    login(email, password)
-  );
+  return useMutation((input: LoginInput) => {
+    const { email, password } = input;
+    return login(email, password);
+  });
 };
 
-export { useLogin };
+const useRegister = () => {
+  return useMutation((input: RegisterInput) => {
+    const { email, imageUrl, intro, name, password } = input;
+    return signUp(email, name, password, intro, imageUrl);
+  });
+};
+
+export { useLogin, useRegister };

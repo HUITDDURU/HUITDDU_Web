@@ -15,4 +15,20 @@ const login = (email: string, password: string) => {
   });
 };
 
-export { reissuanceToken, login };
+const signUp = (
+  email: string,
+  name: string,
+  password: string,
+  intro: string,
+  imageUrl: string
+) => {
+  return requestWithNoToken.post(uri.register, {
+    email,
+    name,
+    password,
+    intro,
+    imageUrl,
+  });
+};
+
+export { reissuanceToken, login, signUp };
