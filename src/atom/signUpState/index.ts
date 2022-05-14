@@ -10,6 +10,7 @@ const initalState: SignUpState = {
   password: "",
   passwordConfirmation: "",
   profilePicture: "",
+  isEmailConfirmationed: false,
 };
 
 const signUpState = atom<SignUpState>({

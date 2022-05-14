@@ -6,6 +6,7 @@ interface SignUpState {
   nickname: string;
   intro: string;
   profilePicture: string;
+  isEmailConfirmationed: boolean;
 }
 
 export type { SignUpState };
