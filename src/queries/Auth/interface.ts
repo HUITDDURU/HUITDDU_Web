@@ -11,4 +11,9 @@ interface RegisterInput {
   imageUrl: string;
 }
 
-export type { LoginInput, RegisterInput };
+interface CertificationCodeInput {
+  email: string;
+  code: string;
+}
+
+export type { LoginInput, RegisterInput, CertificationCodeInput };
