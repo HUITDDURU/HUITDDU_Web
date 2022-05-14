@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   forwardRef,
   InputHTMLAttributes,
+  memo,
   RefObject,
   useImperativeHandle,
   useRef,
@@ -60,4 +61,4 @@ const FormInput = forwardRef<FormInputRef, FormInputProps>((props, ref) => {
 
 FormInput.displayName = "FormInput";
 
-export default FormInput;
+export default memo(FormInput);
