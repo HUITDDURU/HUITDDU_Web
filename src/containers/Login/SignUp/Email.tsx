@@ -25,7 +25,7 @@ const EmailContainer: NextPage = () => {
         <S.ButtonContainer>
           <S.Page>2 / 3</S.Page>
           <S.ToLogin>
-            <Link href="enterinfo">이전</Link>
+            <Link href="/login/signup/enterinfo">이전</Link>
           </S.ToLogin>
           <Button onClick={() => router.push("profile")}>다음</Button>
         </S.ButtonContainer>

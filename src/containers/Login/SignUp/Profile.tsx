@@ -30,7 +30,7 @@ const ProfileContainer: NextPage = () => {
         <S.ButtonContainer>
           <S.Page>3 / 3</S.Page>
           <S.ToLogin>
-            <Link href="email">이전</Link>
+            <Link href="/login/signup/email">이전</Link>
           </S.ToLogin>
           <Button>회원가입</Button>
         </S.ButtonContainer>

@@ -121,7 +121,7 @@ const EnterInfoContainer: NextPage = () => {
           onChange={onChange}
           value={password}
           ref={passwordRef}
-          info={`하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자가 포함된\n 8 ~ 16자로 구성되어야 합니다.`}
+          info={`비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자가 포함된 8 ~ 16자로 구성되어야 합니다.`}
         />
         <FormInput
           title="비밀번호 확인"
