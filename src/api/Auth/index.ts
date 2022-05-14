@@ -31,4 +31,18 @@ const signUp = (
   });
 };
 
-export { reissuanceToken, login, signUp };
+const postEmailCode = (email: string) => {
+  return requestWithNoToken.post(uri.email, { email });
+};
+
+const certificationEmailCode = (email: string, code: string) => {
+  return requestWithNoToken.put(uri.email, { email, code });
+};
+
+export {
+  reissuanceToken,
+  login,
+  signUp,
+  postEmailCode,
+  certificationEmailCode,
+};
