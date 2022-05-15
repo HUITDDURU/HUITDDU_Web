@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import * as S from "./styles";
 import Tewmoji from "react-twemoji";
 import Link from "next/link";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 
 const NotFoundContainer: NextPage = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import useInput, { EventFilter } from "../../hooks/useInput";
 import * as S from "./styles";
 

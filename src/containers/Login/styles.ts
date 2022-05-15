@@ -6,7 +6,7 @@ export const Title = styled.div`
   margin-bottom: 28px;
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
   display: flex;
   flex-direction: column;
   row-gap: 18px;
@@ -64,4 +64,16 @@ export const ImageButton = styled.button`
     border: solid 1px ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primary};
   }
+`;
+
+export const ProfileWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0px;
+`;
+
+export const ProfileContainer = styled.div`
+  border-radius: 50%;
+  overflow: hidden;
 `;

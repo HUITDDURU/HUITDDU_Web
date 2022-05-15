@@ -27,7 +27,7 @@ const LoginWapper: FC = ({ children }) => {
     );
   }, [children]);
 
-  useEffect(() => {
+  const doAnim = useCallback(() => {
     if (displayChildren === children) {
       onComplete();
     } else {
@@ -40,6 +40,10 @@ const LoginWapper: FC = ({ children }) => {
       });
     }
   }, [children, displayChildren, onComplete]);
+
+  useEffect(() => {
+    doAnim();
+  }, [doAnim]);
 
   return (
     <S.Container>

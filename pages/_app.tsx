@@ -9,6 +9,8 @@ import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import PageTransition from "../src/components/PageTransition";
 import LoginWrapper from "../src/components/LoginWrapper";
+import { RecoilRoot } from "recoil";
+import { useMemo } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -35,34 +37,37 @@ const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  if (router.pathname.startsWith("/login")) {
+  const content = useMemo(() => {
+    if (router.pathname.startsWith("/login")) {
+      return (
+        <LoginWrapper>
+          <Component {...pageProps} />
+        </LoginWrapper>
+      );
+    }
+
     return (
-      <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <LoginWrapper>
-            <Component {...pageProps} />
-          </LoginWrapper>
-          <Toaster position="top-center" />
-        </QueryClientProvider>
-      </ThemeProvider>
+      <Container>
+        <Outer>
+          <Header />
+          <Inner>
+            <PageTransition>
+              <Component {...pageProps} />
+            </PageTransition>
+          </Inner>
+        </Outer>
+        <Footer />
+      </Container>
     );
-  }
+  }, [Component, pageProps, router.pathname]);
 
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <Container>
-          <Outer>
-            <Header />
-            <Inner>
-              <PageTransition>
-                <Component {...pageProps} />
-              </PageTransition>
-            </Inner>
-          </Outer>
-          <Footer />
-        </Container>
-        <Toaster position="top-center" />
+        <RecoilRoot>
+          {content}
+          <Toaster position="top-center" />
+        </RecoilRoot>
       </QueryClientProvider>
     </ThemeProvider>
   );

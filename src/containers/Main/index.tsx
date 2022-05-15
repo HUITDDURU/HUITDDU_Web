@@ -1,7 +1,7 @@
 import DiaryHint from "../../components/DiaryHint";
 import DiaryMap from "../../components/DiaryMap";
 import Status from "../../components/Status";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 const MainContainer = () => {

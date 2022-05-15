@@ -1,4 +1,4 @@
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 const MyInfoAside = () => {

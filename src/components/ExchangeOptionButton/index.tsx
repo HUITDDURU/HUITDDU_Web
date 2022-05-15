@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC, memo } from "react";
-import ANIMATED_CLASS from "../../constant/AnimatedClass";
+import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 interface PropsType {

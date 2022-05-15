@@ -9,11 +9,13 @@ export const Button = styled.button`
   transition: filter 0.2s ease-in-out;
   user-select: none;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     filter: brightness(0.9);
   }
 
-  &:active {
+  &:active,
+  &:disabled {
     filter: brightness(0.8);
   }
 `;

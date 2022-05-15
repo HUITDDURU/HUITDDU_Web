@@ -9,12 +9,14 @@ export const Button = styled.button`
   transition: filter 0.2s ease-in-out;
   user-select: none;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: ${({ theme }) => theme.colors.primary};
     border: solid 1px ${({ theme }) => theme.colors.primary};
   }
 
-  &:active {
+  &:active,
+  &:disabled {
     filter: brightness(0.8);
   }
 `;
