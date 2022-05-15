@@ -65,3 +65,15 @@ export const ImageButton = styled.button`
     color: ${({ theme }) => theme.colors.primary};
   }
 `;
+
+export const ProfileWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0px;
+`;
+
+export const ProfileContainer = styled.div`
+  border-radius: 50%;
+  overflow: hidden;
+`;
