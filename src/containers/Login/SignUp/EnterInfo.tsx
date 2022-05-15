@@ -7,6 +7,8 @@ import signUpState from "../../../atom/signUpState";
 import Button from "../../../components/Buttons/Button";
 import * as S from "../styles";
 import FormInput, { FormInputRef } from "../../../components/FormInput";
+import { useEmail } from "../../../queries/Auth";
+import toast from "react-hot-toast";
 
 interface ErrorMessages {
   email?: string;
@@ -17,10 +19,12 @@ interface ErrorMessages {
 const EnterInfoContainer: NextPage = () => {
   const router = useRouter();
   const [signUp, setSignUp] = useRecoilState(signUpState);
-  const { email, password, passwordConfirmation } = signUp;
+  const { email, password, passwordConfirmation, isEmailConfirmationed } =
+    signUp;
   const emailRef = useRef<FormInputRef>(null);
   const passwordRef = useRef<FormInputRef>(null);
   const passwordConfirmationRef = useRef<FormInputRef>(null);
+  const { postCode } = useEmail();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -91,7 +95,16 @@ const EnterInfoContainer: NextPage = () => {
     }
 
     setError({});
-    router.push("email");
+    if (!isEmailConfirmationed) {
+      toast.promise(postCode.mutateAsync(email), {
+        loading: "인증코드 전송중...",
+        success: "인증코드 전송완료. 이메일을 확인해주세요.",
+        error: "인증코드 전송 실패",
+      });
+      router.push("email");
+    } else {
+      router.push("profile");
+    }
   };
 
   const nextDisabled = [email, password, passwordConfirmation].some(
@@ -111,6 +124,7 @@ const EnterInfoContainer: NextPage = () => {
           type="email"
           onChange={onChange}
           value={email}
+          disabled={isEmailConfirmationed}
         />
         <FormInput
           title="비밀번호"
