@@ -55,7 +55,7 @@ const EnterInfoContainer: NextPage = () => {
     }
   };
 
-  const onNext = () => {
+  const onNext = async () => {
     const emailRegex =
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
@@ -96,20 +96,24 @@ const EnterInfoContainer: NextPage = () => {
 
     setError({});
     if (!isEmailConfirmationed) {
-      toast.promise(postCode.mutateAsync(email), {
-        loading: "인증코드 전송중...",
-        success: "인증코드 전송완료. 이메일을 확인해주세요.",
-        error: "인증코드 전송 실패",
-      });
-      router.push("email");
+      try {
+        await toast.promise(postCode.mutateAsync(email), {
+          loading: "인증코드 전송중...",
+          success: "인증코드 전송완료. 이메일을 확인해주세요.",
+          error: "인증코드 전송 실패. 다시 시도해주세요.",
+        });
+
+        router.push("email");
+      } catch (error) {}
     } else {
       router.push("profile");
     }
   };
 
-  const nextDisabled = [email, password, passwordConfirmation].some(
-    (value) => value.length <= 0
-  );
+  const nextDisabled =
+    [email, password, passwordConfirmation].some(
+      (value) => value.length <= 0
+    ) || postCode.isLoading;
 
   return (
     <div>
