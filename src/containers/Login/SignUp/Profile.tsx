@@ -1,4 +1,5 @@
 import { Image } from "@nextui-org/react";
+import axios from "axios";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -82,7 +83,22 @@ const ProfileContainer: NextPage = () => {
       );
 
       router.push("/login");
-    } catch (error) {}
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 409) {
+        toast.error("이미 사용중인 이메일입니다. 다른 이메일로 시도해주세요.");
+        setSignUp({
+          certificationCode: "",
+          email: "",
+          intro: "",
+          nickname: "",
+          isEmailConfirmationed: false,
+          password: "",
+          passwordConfirmation: "",
+          profilePicture: "",
+        });
+        await push("/login/signup/enterinfo", 500);
+      }
+    }
   };
 
   useEffect(() => {
