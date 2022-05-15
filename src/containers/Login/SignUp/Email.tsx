@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { memo, useCallback, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 import { useRecoilState } from "recoil";
 import signUpState from "../../../atom/signUpState";
 import Button from "../../../components/Buttons/Button";
@@ -39,7 +40,11 @@ const EmailContainer: NextPage = () => {
 
     codeRef.current?.error("");
     try {
-      await codeCertification.mutateAsync({ email, code: certificationCode });
+      await toast.promise(
+        codeCertification.mutateAsync({ email, code: certificationCode }),
+        { loading: "인증중...", success: "인증 완료", error: "인증 실패" }
+      );
+
       await router.push("profile");
       setSignUp((prev) => ({ ...prev, isEmailConfirmationed: true }));
     } catch (error) {
