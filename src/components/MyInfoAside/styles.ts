@@ -14,6 +14,7 @@ export const Profile = styled.div`
   height: 305px;
   background-color: ${({ theme }) => theme.colors.primary};
   margin: 0 auto;
+  overflow: hidden;
 `;
 
 export const Name = styled.div`
