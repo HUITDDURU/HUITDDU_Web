@@ -9,6 +9,7 @@ import * as S from "../styles";
 import FormInput, { FormInputRef } from "../../../components/FormInput";
 import { useEmail } from "../../../queries/Auth";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 interface ErrorMessages {
   email?: string;
@@ -100,11 +101,28 @@ const EnterInfoContainer: NextPage = () => {
         await toast.promise(postCode.mutateAsync(email), {
           loading: "인증코드 전송중...",
           success: "인증코드 전송완료. 이메일을 확인해주세요.",
-          error: "인증코드 전송 실패. 다시 시도해주세요.",
+          error: "인증코드 전송 실패.",
         });
 
         router.push("email");
-      } catch (error) {}
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 409) {
+          toast.error(
+            "이미 사용중인 이메일입니다. 다른 이메일로 시도해주세요."
+          );
+
+          setSignUp({
+            certificationCode: "",
+            email: "",
+            intro: "",
+            nickname: "",
+            isEmailConfirmationed: false,
+            password: "",
+            passwordConfirmation: "",
+            profilePicture: "",
+          });
+        }
+      }
     } else {
       router.push("profile");
     }
