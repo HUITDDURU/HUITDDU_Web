@@ -34,6 +34,10 @@ export const ProfileOverlay = styled.div`
   transition: opacity 0.2s ease-in-out;
   justify-content: center;
   align-items: center;
+
+  img {
+    opacity: 0.7;
+  }
 `;
 
 export const Name = styled.div`

@@ -32,16 +32,9 @@ const MyInfoAside = () => {
     e
   ) => {
     const files = e.target.files;
-
-    if (!files) {
-      return;
-    }
-
+    if (!files) return;
     const file = files[0];
-
-    if (!file) {
-      return;
-    }
+    if (!file) return;
 
     await toast.promise(profileImageMutation.mutateAsync(file), {
       loading: "사진 업로드 중...",
@@ -90,7 +83,7 @@ const MyInfoAside = () => {
         </S.ProfileOverlay>
         <input
           type="file"
-          style={{ display: "hidden" }}
+          style={{ display: "none" }}
           ref={fileInputRef}
           onChange={onFileChange}
           onClick={(e) => e.stopPropagation()}
