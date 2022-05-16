@@ -3,6 +3,7 @@ const enum uri {
   register = "/register",
   email = "/email",
   image = "/image",
+  my = "my-info",
 }
 
 export default uri;
