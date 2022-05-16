@@ -8,13 +8,32 @@ export const Container = styled.div`
   top: 140px;
 `;
 
-export const Profile = styled.div`
+export const Profile = styled.button`
   border-radius: 50%;
   width: 305px;
   height: 305px;
   background-color: ${({ theme }) => theme.colors.primary};
   margin: 0 auto;
   overflow: hidden;
+  position: relative;
+
+  &:hover .overlay {
+    opacity: 1;
+  }
+`;
+
+export const ProfileOverlay = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.grayscale.black}90;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Name = styled.div`

@@ -4,6 +4,7 @@ const enum uri {
   email = "/email",
   image = "/image",
   my = "my-info",
+  profileImage = "profile-image",
 }
 
 export default uri;

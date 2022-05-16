@@ -6,4 +6,11 @@ const getProfile = async () => {
   return await request.get<GetProfileResponse>(uri.my);
 };
 
-export { getProfile };
+const changeProfileImage = async (file: File) => {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  return await request.patch(uri.profileImage, formData);
+};
+
+export { getProfile, changeProfileImage };
