@@ -8,6 +8,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import queryKeys from "../../constant/queryKeys";
+import Intro from "../Intro";
 
 const MyInfoAside = () => {
   const { data, isLoading, isError, isSuccess } = useProfile();
@@ -93,12 +94,12 @@ const MyInfoAside = () => {
       {isLoading && <S.Name>로딩중</S.Name>}
       {isError && <S.Name>오류 발생</S.Name>}
       {isSuccess && <S.Name>{data.data.name}</S.Name>}
-      <S.Description>한줄 소개</S.Description>
-      {isLoading && <S.OneLine>로딩중</S.OneLine>}
-      {isError && <S.OneLine>오류 발생</S.OneLine>}
-      {isSuccess && (
-        <S.OneLine>{intro || "한줄소개가 비어있습니다."}</S.OneLine>
-      )}
+      <Intro
+        isError={isError}
+        isSuccess={isSuccess}
+        isLoading={isLoading}
+        intro={intro}
+      />
     </S.Container>
   );
 };
