@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import moment from "moment";
 import { reissuanceToken } from "../../api/Auth";
+import RefreshError from "../../class/RefreshError";
 import storageKeys from "../../constant/storageKeys";
 
 const saveTokenInReqestHeader = async (
@@ -16,7 +17,7 @@ const saveTokenInReqestHeader = async (
 
   if (!refreshToken || !expiresAt || !accessToken) {
     //토큰이 없거나 만료 시각이 없다면 인증 실패
-    throw new Error();
+    throw new RefreshError();
   }
 
   if (moment(moment.now()).isBefore(moment(expiresAt))) {
@@ -39,7 +40,7 @@ const saveTokenInReqestHeader = async (
     localStorage.setItem(storageKeys.refreshToken, newRT);
   } catch (error) {
     //토큰 리프레시 실패
-    throw new Error();
+    throw new RefreshError();
   }
 
   config.headers["Authorization"] = `Bearer ${accessToken}`;
