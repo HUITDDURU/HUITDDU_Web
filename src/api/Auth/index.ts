@@ -3,9 +3,15 @@ import { requestWithNoToken } from "../../utils/axios";
 import { TokenResponse } from "./interface";
 
 const reissuanceToken = (refreshToken: string) => {
-  return requestWithNoToken.put<TokenResponse>(uri.auth, {
-    "refresh-token": refreshToken,
-  });
+  return requestWithNoToken.put<TokenResponse>(
+    uri.auth,
+    {},
+    {
+      headers: {
+        "refresh-token": refreshToken,
+      },
+    }
+  );
 };
 
 const login = (email: string, password: string) => {
