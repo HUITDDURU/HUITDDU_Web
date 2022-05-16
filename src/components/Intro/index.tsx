@@ -1,4 +1,8 @@
 import React, { FC, memo, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { useQueryClient } from "react-query";
+import queryKeys from "../../constant/queryKeys";
+import { useProfileMutation } from "../../queries/My";
 import * as S from "./styles";
 
 interface PropsType {
@@ -13,11 +17,26 @@ const Intro: FC<PropsType> = (props) => {
   const [introValue, setIntroValue] = useState<string | null>(intro);
   const [isModifying, setIsModifying] = useState<boolean>(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const { introMutation } = useProfileMutation();
+  const queryClient = useQueryClient();
 
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) =>
     setIntroValue(e.target.value);
 
-  const onModifyClick = () => setIsModifying((prev) => !prev);
+  const onModifyClick = async () => {
+    const rev = !isModifying;
+    setIsModifying(rev);
+
+    if (!rev) {
+      await toast.promise(introMutation.mutateAsync(introValue || ""), {
+        loading: "변경사항 적용 중...",
+        error: "변경사항 적용 실패.",
+        success: "변경사항 적용 성공.",
+      });
+
+      queryClient.invalidateQueries([queryKeys.my]);
+    }
+  };
 
   useEffect(() => {
     setIntroValue(intro);
@@ -33,7 +52,10 @@ const Intro: FC<PropsType> = (props) => {
     <>
       <S.DescriptionContainer>
         <S.Description>한줄 소개</S.Description>
-        <S.ModifyButton onClick={onModifyClick}>
+        <S.ModifyButton
+          disabled={introMutation.isLoading}
+          onClick={onModifyClick}
+        >
           {isModifying ? "완료" : "수정"}
         </S.ModifyButton>
       </S.DescriptionContainer>

@@ -13,4 +13,8 @@ const changeProfileImage = async (file: File) => {
   return await request.patch(uri.profileImage, formData);
 };
 
-export { getProfile, changeProfileImage };
+const changeIntro = async (intro: string) => {
+  return await request.patch(uri.intro, { intro });
+};
+
+export { getProfile, changeProfileImage, changeIntro };
