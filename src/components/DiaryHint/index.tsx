@@ -1,10 +1,21 @@
 import { useTheme } from "@emotion/react";
-import { memo, useEffect, useMemo, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { FC, memo, useEffect, useMemo, useState } from "react";
+import { UseQueryResult } from "react-query";
+import { GetMatchedUserResponse } from "../../api/Main/interface";
 import ANIMATED_CLASS from "../../constant/animatedClass";
+import DiaryHintSkeleton from "../DiaryHintSkeleton";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
 
-const DiaryHint = () => {
+interface PropsType {
+  data: UseQueryResult<AxiosResponse<GetMatchedUserResponse, unknown>, unknown>;
+}
+
+const DiaryHint: FC<PropsType> = (props) => {
+  const { data: query } = props;
+  const { isLoading, isError, data, error } = query;
+
   const theme = useTheme();
   const [diarys, setDiarys] = useState<string[]>([]);
   const diaryCount = useMemo(() => 4, []);
@@ -19,6 +30,44 @@ const DiaryHint = () => {
     );
   }, [theme]);
 
+  const content = useMemo(() => {
+    if (
+      isError &&
+      axios.isAxiosError(error) &&
+      error.response?.status === 404
+    ) {
+      return (
+        <S.Content>
+          <div>사람을 정하고</div>
+          <div>일기를 주고받아보세요.</div>
+        </S.Content>
+      );
+    }
+
+    if (isError) {
+      return <S.Content>오류 발생</S.Content>;
+    }
+
+    return (
+      <>
+        <S.Content>
+          <div>
+            <b>{data?.data.user2}</b>
+            님과
+          </div>
+          <div>일기를 주고받아보세요.</div>
+        </S.Content>
+        <S.Flex>
+          <S.Button>일기 쓰기</S.Button>
+        </S.Flex>
+      </>
+    );
+  }, [data?.data.user2, error, isError]);
+
+  if (isLoading) {
+    return <DiaryHintSkeleton />;
+  }
+
   return (
     <S.Container className={ANIMATED_CLASS}>
       <div>
@@ -28,18 +77,7 @@ const DiaryHint = () => {
           </S.Diary>
         ))}
       </div>
-      <div>
-        <S.Content>
-          <div>
-            <b>user1234</b>
-            님과
-          </div>
-          <div>일기를 주고받아보세요.</div>
-        </S.Content>
-        <S.Flex>
-          <S.Button>일기 쓰기</S.Button>
-        </S.Flex>
-      </div>
+      <div>{content}</div>
     </S.Container>
   );
 };
