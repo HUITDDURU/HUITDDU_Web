@@ -4,22 +4,18 @@ import { useProfile, useProfileMutation } from "../../queries/My";
 import * as S from "./styles";
 import DefaultImage from "../../assets/images/default-user.png";
 import { ImageIcon } from "../../assets/icons";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import queryKeys from "../../constant/queryKeys";
 import Intro from "../Intro";
+import ImageWithDefaultImage from "../ImageWithDefaultImage";
 
 const MyInfoAside = () => {
   const { data, isLoading, isError, isSuccess } = useProfile();
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { profileImageMutation } = useProfileMutation();
   const queryClient = useQueryClient();
-
-  const onImageError = () => {
-    setImageUrl(DefaultImage.src);
-  };
 
   const intro = useMemo(() => {
     if (data?.data.intro && data.data.intro.trim() !== "") {
@@ -50,25 +46,17 @@ const MyInfoAside = () => {
     fileInputRef.current?.click();
   };
 
-  useEffect(() => {
-    if (data) {
-      setImageUrl(data.data.img);
-    } else {
-      setImageUrl(null);
-    }
-  }, [data]);
-
   return (
     <S.Container className={ANIMATED_CLASS}>
       <S.Profile onClick={onProfileClick}>
         {isSuccess && (
-          <Image
+          <ImageWithDefaultImage
             width={305}
             height={305}
             objectFit="cover"
             objectPosition="center"
-            onError={onImageError}
-            src={imageUrl || DefaultImage}
+            src={data.data.img}
+            defaultImage={DefaultImage}
             alt="프로필 사진"
           />
         )}
