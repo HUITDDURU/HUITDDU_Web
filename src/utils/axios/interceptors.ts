@@ -38,6 +38,10 @@ const saveTokenInReqestHeader = async (
     //로컬스토리지에 저장
     localStorage.setItem(storageKeys.accessToken, newAT);
     localStorage.setItem(storageKeys.refreshToken, newRT);
+    localStorage.setItem(
+      storageKeys.expiresAt,
+      moment().add(30, "minute").toISOString()
+    );
   } catch (error) {
     //토큰 리프레시 실패
     throw new RefreshError();

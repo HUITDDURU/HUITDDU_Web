@@ -11,6 +11,8 @@ import PageTransition from "../src/components/PageTransition";
 import LoginWrapper from "../src/components/LoginWrapper";
 import { RecoilRoot } from "recoil";
 import { useMemo } from "react";
+import RefreshError from "../src/class/RefreshError";
+import storageKeys from "../src/constant/storageKeys";
 
 const Container = styled.div`
   display: flex;
@@ -32,11 +34,20 @@ const Outer = styled.div`
   flex: 1;
 `;
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: false } },
-});
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const onError = async (err: unknown) => {
+    if (err instanceof RefreshError) {
+      await router.push("/login");
+      localStorage.removeItem(storageKeys.accessToken);
+      localStorage.removeItem(storageKeys.refreshToken);
+      localStorage.removeItem(storageKeys.expiresAt);
+    }
+  };
+
+  queryClient.setDefaultOptions({ queries: { onError, retry: false } });
+
   const content = useMemo(() => {
     if (router.pathname.startsWith("/login")) {
       return (
