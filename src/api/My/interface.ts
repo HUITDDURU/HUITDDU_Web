@@ -10,7 +10,7 @@ export interface DiaryItem {
   mateImg: string | null;
   isMyTurn: boolean | null;
   mateName: string;
-  hoursAgo: boolean | null;
+  hoursAgo: number | null;
 }
 
 type GetMyDiaryListResponse = DiaryItem[];
