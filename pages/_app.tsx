@@ -13,6 +13,7 @@ import { RecoilRoot } from "recoil";
 import { useMemo } from "react";
 import RefreshError from "../src/class/RefreshError";
 import storageKeys from "../src/constant/storageKeys";
+import NextNProgress from "nextjs-progressbar";
 
 const Container = styled.div`
   display: flex;
@@ -78,6 +79,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <RecoilRoot>
           {content}
           <Toaster position="top-center" />
+          <NextNProgress
+            color={theme.colors.primary}
+            height={3}
+            showOnShallow={true}
+            options={{ showSpinner: false }}
+          />
         </RecoilRoot>
       </QueryClientProvider>
     </ThemeProvider>
