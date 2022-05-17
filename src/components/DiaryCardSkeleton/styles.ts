@@ -1,17 +1,11 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.a`
+export const Container = styled.div`
   padding: 28px;
   border: 1px solid ${({ theme }) => theme.colors.grayscale.lightGray1};
   border-radius: 10px;
   padding: 16px;
   padding-top: 40px;
-  transition: background-color 0.2s ease-in-out;
-
-  &:hover,
-  &:focus-visible {
-    background-color: ${({ theme }) => theme.colors.grayscale.lightGray2};
-  }
 `;
 
 export const Profile = styled.div`
@@ -20,7 +14,7 @@ export const Profile = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.grayscale.lightGray1};
   border-radius: 50%;
   transform: translateX(-25%);
   overflow: hidden;
@@ -42,6 +36,9 @@ export const Title = styled.div`
   font: ${({ theme }) => theme.fonts.body1};
   color: ${({ theme }) => theme.colors.grayscale.black};
   margin-bottom: 16px;
+  background-color: ${({ theme }) => theme.colors.grayscale.lightGray1};
+  border-radius: 5px;
+  color: transparent;
 `;
 
 export const InfoContainer = styled.div`
@@ -50,7 +47,10 @@ export const InfoContainer = styled.div`
   align-items: center;
 `;
 
-export const Gray = styled.div`
+export const Gray = styled.span`
   font: ${({ theme }) => theme.fonts.body2};
   color: ${({ theme }) => theme.colors.grayscale.gray2};
+  background-color: ${({ theme }) => theme.colors.grayscale.lightGray1};
+  border-radius: 5px;
+  color: transparent;
 `;

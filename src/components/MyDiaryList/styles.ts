@@ -18,3 +18,9 @@ export const Grid = styled.div`
   gap: 16px;
   display: grid;
 `;
+
+export const Message = styled.div`
+  font: ${({ theme }) => theme.fonts.subtitle};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.grayscale.gray1};
+`;
