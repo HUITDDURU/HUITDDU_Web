@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useMyDiaryList } from "../../queries/My";
 import DiaryCard from "../DiaryCard";
@@ -5,20 +6,16 @@ import DiaryCardSkeleton from "../DiaryCardSkeleton";
 import * as S from "./styles";
 
 const MyDiaryList = () => {
-  const { data, isLoading } = useMyDiaryList();
+  const { data, isLoading, isError, isSuccess } = useMyDiaryList();
 
   return (
     <S.Container className={ANIMATED_CLASS}>
       <S.Title>일기장</S.Title>
+      {isError && <S.Message>오류 발생</S.Message>}
+      {isSuccess && data.data.length <= 0 && (
+        <S.Message>일기장이 없습니다.</S.Message>
+      )}
       <S.Grid>
-        <DiaryCard
-          currentUserImg="https://huitdduru.s3.ap-northeast-2.amazonaws.com/3a2aaf9c-3e70-49ae-9814-fdf9dec039ce"
-          mateImg="https://huitdduru.s3.ap-northeast-2.amazonaws.com/3a2aaf9c-3e70-49ae-9814-fdf9dec039ce"
-          diaryId={123}
-          hoursAgo={2}
-          isMyTurn
-          mateName="rlawlsrms"
-        />
         {isLoading &&
           new Array(4)
             .fill(0)
