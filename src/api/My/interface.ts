@@ -4,4 +4,15 @@ interface GetProfileResponse {
   img: string | null;
 }
 
-export type { GetProfileResponse };
+export interface DiaryItem {
+  diaryId: number;
+  currentUserImg: string | null;
+  mateImg: string | null;
+  isMyTurn: boolean | null;
+  mateName: string;
+  hoursAgo: boolean | null;
+}
+
+type GetMyDiaryListResponse = DiaryItem[];
+
+export type { GetProfileResponse, GetMyDiaryListResponse };
