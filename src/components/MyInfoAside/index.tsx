@@ -72,24 +72,28 @@ const MyInfoAside = () => {
             alt="프로필 사진"
           />
         )}
-        <S.ProfileOverlay className="overlay">
-          <Image
-            src={ImageIcon}
-            alt="이미지 선택 아이콘"
-            width={100}
-            height={100}
-            objectFit="contain"
-            objectPosition="center"
-          />
-        </S.ProfileOverlay>
-        <input
-          type="file"
-          style={{ display: "none" }}
-          ref={fileInputRef}
-          onChange={onFileChange}
-          onClick={(e) => e.stopPropagation()}
-          accept="image/png, image/jpeg"
-        />
+        {isSuccess && (
+          <>
+            <S.ProfileOverlay className="overlay">
+              <Image
+                src={ImageIcon}
+                alt="이미지 선택 아이콘"
+                width={100}
+                height={100}
+                objectFit="contain"
+                objectPosition="center"
+              />
+            </S.ProfileOverlay>
+            <input
+              type="file"
+              style={{ display: "none" }}
+              ref={fileInputRef}
+              onChange={onFileChange}
+              onClick={(e) => e.stopPropagation()}
+              accept="image/png, image/jpeg"
+            />
+          </>
+        )}
       </S.Profile>
       {isLoading && <S.Name>로딩중</S.Name>}
       {isError && <S.Name>오류 발생</S.Name>}

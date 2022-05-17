@@ -52,12 +52,14 @@ const Intro: FC<PropsType> = (props) => {
     <>
       <S.DescriptionContainer>
         <S.Description>한줄 소개</S.Description>
-        <S.ModifyButton
-          disabled={introMutation.isLoading}
-          onClick={onModifyClick}
-        >
-          {isModifying ? "완료" : "수정"}
-        </S.ModifyButton>
+        {isSuccess && (
+          <S.ModifyButton
+            disabled={introMutation.isLoading}
+            onClick={onModifyClick}
+          >
+            {isModifying ? "완료" : "수정"}
+          </S.ModifyButton>
+        )}
       </S.DescriptionContainer>
       {isLoading && <S.OneLine>로딩중</S.OneLine>}
       {isError && <S.OneLine>오류 발생</S.OneLine>}
