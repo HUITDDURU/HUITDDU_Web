@@ -4,6 +4,7 @@ const enum uri {
   email = "/email",
   image = "/image",
   my = "/my-info",
+  myDiaryList = "/diary-list",
   profileImage = "/profile-image",
   intro = "/intro",
 }
