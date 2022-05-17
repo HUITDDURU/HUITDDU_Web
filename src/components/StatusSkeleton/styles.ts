@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Profile = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.grayscale.lightGray1};
   border-radius: 50%;
   width: 150px;
   height: 150px;
@@ -37,9 +37,17 @@ export const ProfileOuter = styled.div`
 
 export const Content = styled.div`
   font: ${({ theme }) => theme.fonts.body2};
-  color: ${({ theme }) => theme.colors.grayscale.black};
+  color: transparent;
   text-align: center;
   margin-top: 60px;
+
+  span {
+    background-color: ${({ theme }) => theme.colors.grayscale.lightGray1};
+  }
+
+  div {
+    margin-bottom: 5px;
+  }
 
   b {
     font: ${({ theme }) => theme.fonts.body1};
