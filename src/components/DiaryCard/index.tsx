@@ -12,7 +12,7 @@ const DiaryCard: FC<DiaryItem> = (props) => {
   const theme = useTheme();
 
   return (
-    <Link href={`/${diaryId}`} passHref>
+    <Link href={`/diary/${diaryId}`} passHref>
       <S.Container>
         <S.ProfileContainer>
           <S.ProfileOuter>
