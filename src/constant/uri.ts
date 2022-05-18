@@ -8,7 +8,7 @@ const enum uri {
   profileImage = "/profile-image",
   intro = "/intro",
   match = "/match",
-  chronology = "/chronology",
+  chronology = "/diary/chronology",
 }
 
 export default uri;
