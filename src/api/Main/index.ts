@@ -1,9 +1,13 @@
 import uri from "../../constant/uri";
 import { request } from "../../utils/axios";
-import { GetMatchedUserResponse } from "./interface";
+import { GetDiaryProgressResponse, GetMatchedUserResponse } from "./interface";
 
 const getMatchedUser = async () => {
   return await request.get<GetMatchedUserResponse>(uri.match);
 };
 
-export { getMatchedUser };
+const getDiaryProgress = async () => {
+  return await request.get<GetDiaryProgressResponse>(uri.chronology);
+};
+
+export { getMatchedUser, getDiaryProgress };

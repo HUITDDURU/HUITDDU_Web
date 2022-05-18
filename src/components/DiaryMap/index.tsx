@@ -1,126 +1,10 @@
 import { useTheme } from "@emotion/react";
 import moment from "moment";
 import React, { Fragment, memo, useMemo, useRef } from "react";
+import { DiaryProgressItem } from "../../api/Main/interface";
 import ANIMATED_CLASS from "../../constant/animatedClass";
+import { useDiaryProgress } from "../../queries/Main";
 import * as S from "./styles";
-
-export interface Dot {
-  userId: number;
-  diary: {
-    id: number;
-    title: string;
-    date: string;
-    writer: string;
-    createdAt: string;
-  };
-  isMine: boolean;
-}
-
-const getDiary = (date: string) => ({
-  id: 1,
-  title: "제목",
-  date: date,
-  writer: "김진근",
-  createdAt: date,
-});
-
-const data: Dot[] = [
-  {
-    userId: 1,
-    diary: getDiary("2022-04-01"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-02"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-03"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-04"),
-    isMine: true,
-  },
-  {
-    userId: 2,
-    diary: getDiary("2022-04-02T09:00:00"),
-    isMine: false,
-  },
-  {
-    userId: 2,
-    diary: getDiary("2022-04-03"),
-    isMine: false,
-  },
-  {
-    userId: 2,
-    diary: getDiary("2022-04-04"),
-    isMine: false,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-05T09:00:00"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-06"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-07"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-15"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-16"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-17"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-18"),
-    isMine: true,
-  },
-  {
-    userId: 1,
-    diary: getDiary("2022-04-19"),
-    isMine: true,
-  },
-  {
-    userId: 3,
-    diary: getDiary("2022-04-05T03:00:00"),
-    isMine: false,
-  },
-  {
-    userId: 3,
-    diary: getDiary("2022-04-06"),
-    isMine: false,
-  },
-  {
-    userId: 3,
-    diary: getDiary("2022-04-07"),
-    isMine: false,
-  },
-  {
-    userId: 4,
-    diary: getDiary("2022-04-07T09:00:00"),
-    isMine: false,
-  },
-];
 
 const toString = (date: Date) =>
   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -140,30 +24,44 @@ const DiaryMap = () => {
     () => [theme.colors.secondary, ...Object.values(theme.colors.sub)],
     [theme.colors.secondary, theme.colors.sub]
   );
+  const { data, isLoading, isError } = useDiaryProgress();
+
   const list = useMemo(
     () =>
-      data.sort(
+      data?.data.sort(
         (a, b) =>
           new Date(a.diary.date).getTime() - new Date(b.diary.date).getTime()
       ),
-    []
+    [data]
   );
 
   const renderColumn = useMemo(() => {
-    const dateMap = new Map<string, Dot[]>();
+    if (isLoading) {
+      return <div></div>;
+    }
+
+    if (isError) {
+      return <div></div>;
+    }
+
+    if (!list) {
+      return <div></div>;
+    }
+
+    const dateMap = new Map<string, DiaryProgressItem[]>();
     const userMap = new Map<number, string>();
     const posMap = new Map<number, number>();
     let offset = -1;
     let index = 0;
 
     list.forEach((value) => {
-      const { diary, userId } = value;
+      const { diary, id } = value;
       const { date } = diary;
       const d = toString(new Date(date));
 
       const keys = Array.from(dateMap.keys());
 
-      let v: Dot[] = [];
+      let v: DiaryProgressItem[] = [];
       if (keys.includes(d)) {
         v = dateMap.get(d) || [];
       }
@@ -174,12 +72,12 @@ const DiaryMap = () => {
 
       const ukeys = Array.from(userMap.keys());
 
-      if (!ukeys.includes(userId) && !value.isMine) {
+      if (!ukeys.includes(id) && !value.isMine) {
         const color = colors[index];
         index = (index + 1) % colors.length;
 
-        userMap.set(userId, color);
-        posMap.set(userId, offset);
+        userMap.set(id, color);
+        posMap.set(id, offset);
         offset = offset === 1 ? -1 : 1;
       }
     });
@@ -197,7 +95,7 @@ const DiaryMap = () => {
         <S.Column key={key.toString() + index}>
           {item.map((elem, index) => {
             const timeList = list
-              .filter((value) => value.userId === elem.userId)
+              .filter((value) => value.id === elem.id)
               .map((value) => new Date(value.diary.date).getTime());
 
             const min = new Date(Math.min(...timeList));
@@ -209,8 +107,8 @@ const DiaryMap = () => {
 
             const color = elem.isMine
               ? theme.colors.primary
-              : userMap.get(elem.userId);
-            const offset = elem.isMine ? 0 : posMap.get(elem.userId) || -1;
+              : userMap.get(elem.id);
+            const offset = elem.isMine ? 0 : posMap.get(elem.id) || -1;
 
             const style = {
               backgroundColor: color,
@@ -252,7 +150,7 @@ const DiaryMap = () => {
         </S.Column>
       );
     });
-  }, [colors, list, theme.colors.primary]);
+  }, [colors, isError, isLoading, list, theme.colors.primary]);
 
   return (
     <S.Container className={ANIMATED_CLASS} ref={containerRef}>

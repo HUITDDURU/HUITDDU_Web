@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from "react-query";
-import { getMatchedUser } from "../../api/Main";
+import { getDiaryProgress, getMatchedUser } from "../../api/Main";
 import DiaryHint from "../../components/DiaryHint";
 import DiaryMap from "../../components/DiaryMap";
 import Status from "../../components/Status";
@@ -30,6 +30,7 @@ const MainContainer = () => {
 export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery([queryKeys.matchedUser], getMatchedUser);
+  await queryClient.prefetchQuery([queryKeys.diaryProgress], getDiaryProgress);
 
   return {
     props: {

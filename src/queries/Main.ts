@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getMatchedUser } from "../api/Main";
+import { getDiaryProgress, getMatchedUser } from "../api/Main";
 import queryKeys from "../constant/queryKeys";
 
 const useMatchedUser = () =>
@@ -7,4 +7,7 @@ const useMatchedUser = () =>
     refetchOnWindowFocus: false,
   });
 
-export { useMatchedUser };
+const useDiaryProgress = () =>
+  useQuery([queryKeys.diaryProgress], () => getDiaryProgress());
+
+export { useMatchedUser, useDiaryProgress };
