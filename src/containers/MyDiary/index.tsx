@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { dehydrate, QueryClient } from "react-query";
 import { getMyDiaryList, getProfile } from "../../api/My";
 import MyDiaryList from "../../components/MyDiaryList";
@@ -18,7 +19,7 @@ const MyDiaryContainer = () => {
   );
 };
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery([queryKeys.my], getProfile);
   await queryClient.prefetchQuery([queryKeys.myDiaryList], getMyDiaryList);
@@ -28,6 +29,6 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient),
     },
   };
-}
+};
 
 export default MyDiaryContainer;
