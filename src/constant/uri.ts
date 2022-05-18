@@ -7,6 +7,8 @@ const enum uri {
   myDiaryList = "/diary-list",
   profileImage = "/profile-image",
   intro = "/intro",
+  match = "/match",
+  chronology = "/diary/chronology",
 }
 
 export default uri;

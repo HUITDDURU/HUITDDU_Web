@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 
 interface PropsType {
   defaultImage: StaticImageData;
-  src: string | StaticImageData | null;
+  src: string | StaticImageData | null | undefined;
 }
 
 const ImageWithDefaultImage: FC<Omit<ImageProps, "src"> & PropsType> = (

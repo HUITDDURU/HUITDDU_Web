@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useMyDiaryList } from "../../queries/My";
 import DiaryCard from "../DiaryCard";
