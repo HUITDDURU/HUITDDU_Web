@@ -34,3 +34,9 @@ export const Pages = styled.div`
   flex-direction: column;
   row-gap: 48px;
 `;
+
+export const Message = styled.div`
+  font: ${({ theme }) => theme.fonts.subtitle};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.grayscale.gray2};
+`;

@@ -9,8 +9,8 @@ const DiaryHintSkeleton = () => {
   return (
     <S.Container className={ANIMATED_CLASS}>
       <div>
-        {new Array(4).fill(0).map((value, index) => (
-          <S.Diary style={{ zIndex: 4 - index }} key={value}>
+        {new Array(4).fill(0).map((_, index) => (
+          <S.Diary style={{ zIndex: 4 - index }} key={index}>
             <DiarySVG color={theme.colors.grayscale.lightGray1} />
           </S.Diary>
         ))}
