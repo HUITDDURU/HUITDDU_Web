@@ -5,7 +5,7 @@ interface SignUpState {
   certificationCode: string;
   nickname: string;
   intro: string;
-  profilePicture: string;
+  profilePicture: undefined | string;
   isEmailConfirmationed: boolean;
 }
 

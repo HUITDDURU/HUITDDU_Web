@@ -26,7 +26,7 @@ const signUp = (
   name: string,
   password: string,
   intro: string,
-  imageUrl: string
+  imageUrl: string | undefined
 ) => {
   return requestWithNoToken.post(uri.register, {
     email,
