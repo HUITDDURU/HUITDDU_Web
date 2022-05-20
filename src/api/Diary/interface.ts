@@ -9,7 +9,10 @@ interface DiaryListItem {
   createdAt: string;
 }
 
-type GetDiaryListResponse = DiaryListItem[];
+type GetDiaryListResponse = {
+  list: DiaryListItem[];
+  matchedUserName: "rlawlsrms";
+};
 
 interface PostDiaryRequest {
   title: string;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { WithRouterProps } from "next/dist/client/with-router";
+import Link from "next/link";
 import { withRouter } from "next/router";
 import { FC, useEffect } from "react";
 import { dehydrate, QueryClient } from "react-query";
@@ -45,17 +46,19 @@ const DirayContainer: FC<WithRouterProps> = ({ router }) => {
     <S.Container>
       {isLoading && <S.Title>로딩중...</S.Title>}
       {isError && <S.Title>오류 발생</S.Title>}
-      {isSuccess && <S.Title>user1234와의 일기장</S.Title>}
+      {isSuccess && <S.Title>{data.data.matchedUserName}와의 일기장</S.Title>}
       <S.Pages>
-        <S.Add>+ 일기 쓰기</S.Add>
+        <Link href={`/diary/${id}/write`} passHref>
+          <S.Add>+ 일기 쓰기</S.Add>
+        </Link>
         {isLoading &&
           new Array(2)
             .fill(0)
             .map((_, index) => <DiaryPageSkeleton key={index} />)}
-        {data?.data.map((_, index) => (
+        {data?.data.list.map((_, index) => (
           <DiaryPage key={index} />
         ))}
-        {isSuccess && data.data.length <= 0 && (
+        {isSuccess && data.data.list.length <= 0 && (
           <S.Message>
             주고받은 일기가 없습니다. 지금 교환을 시작해보세요.
           </S.Message>

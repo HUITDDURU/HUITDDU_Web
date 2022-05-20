@@ -7,7 +7,7 @@ export const Title = styled.h1`
   padding-top: 80px;
 `;
 
-export const Add = styled.button`
+export const Add = styled.a`
   background-color: transparent;
   padding: 28px;
   text-align: center;
