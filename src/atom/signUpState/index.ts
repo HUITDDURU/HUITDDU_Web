@@ -9,7 +9,7 @@ const initalState: SignUpState = {
   nickname: "",
   password: "",
   passwordConfirmation: "",
-  profilePicture: "",
+  profilePicture: undefined,
   isEmailConfirmationed: false,
 };
 

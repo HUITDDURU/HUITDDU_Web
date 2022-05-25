@@ -7,7 +7,7 @@ export const Title = styled.h1`
   padding-top: 80px;
 `;
 
-export const Add = styled.button`
+export const Add = styled.a`
   background-color: transparent;
   padding: 28px;
   text-align: center;
@@ -27,10 +27,17 @@ export const Add = styled.button`
 
 export const Container = styled.div`
   width: 100%;
+  margin-bottom: 200px;
 `;
 
 export const Pages = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 48px;
+`;
+
+export const Message = styled.div`
+  font: ${({ theme }) => theme.fonts.subtitle};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.grayscale.gray2};
 `;

@@ -9,6 +9,8 @@ const enum uri {
   intro = "/intro",
   match = "/match",
   chronology = "/diary/chronology",
+  diary = "/diary",
+  list = "/list",
 }
 
 export default uri;

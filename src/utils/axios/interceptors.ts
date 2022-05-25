@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import moment from "moment";
 import { reissuanceToken } from "../../api/Auth";
 import RefreshError from "../../class/RefreshError";
@@ -43,8 +43,10 @@ const saveTokenInReqestHeader = async (
       moment().add(30, "minute").toISOString()
     );
   } catch (error) {
-    //토큰 리프레시 실패
-    throw new RefreshError();
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      //토큰 리프레시 실패
+      throw new RefreshError();
+    }
   }
 
   config.headers["Authorization"] = `Bearer ${accessToken}`;

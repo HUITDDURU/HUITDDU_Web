@@ -8,7 +8,7 @@ interface RegisterInput {
   name: string;
   password: string;
   intro: string;
-  imageUrl: string;
+  imageUrl: undefined | string;
 }
 
 interface CertificationCodeInput {

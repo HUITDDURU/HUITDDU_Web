@@ -48,6 +48,12 @@ export const DateOuter = styled.div`
 
 export const DateRadioInput = styled.input`
   display: none;
+
+  &:hover + label,
+  &:focus-visible + label {
+    color: ${({ theme }) => theme.colors.grayscale.gray1};
+  }
+
   &:checked + label {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -65,6 +71,11 @@ export const FeelingContainer = styled(DateContainer)`
 `;
 
 export const FeelingRadioInput = styled(DateRadioInput)`
+  &:hover + label,
+  &:focus-visible + label {
+    background: ${({ theme }) => theme.colors.grayscale.lightGray1};
+  }
+
   &:checked + label {
     color: ${({ theme }) => theme.colors.grayscale.black};
     background-color: ${({ theme }) => theme.colors.primary};
@@ -73,12 +84,12 @@ export const FeelingRadioInput = styled(DateRadioInput)`
 
 export const FeelingRadioLabel = styled.label`
   transition: background-color 0.2s ease-in-out;
-  font: ${({ theme }) => theme.fonts.body2};
+  font: ${({ theme }) => theme.fonts.heading2};
   color: ${({ theme }) => theme.colors.grayscale.black};
   user-select: none;
   background-color: ${({ theme }) => theme.colors.grayscale.lightGray2};
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: block;
   display: flex;
   justify-content: center;
@@ -90,4 +101,23 @@ export const Buttons = styled.div`
   display: flex;
   justify-content: right;
   margin-top: 16px;
+`;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ImageWrapper = styled.div`
+  border-radius: 10px;
+  overflow: hidden;
+
+  span {
+    display: block !important;
+  }
+
+  image {
+    display: block !important;
+  }
 `;

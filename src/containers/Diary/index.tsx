@@ -1,20 +1,74 @@
+import axios from "axios";
+import { GetServerSideProps } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC, useEffect } from "react";
+import { dehydrate, QueryClient } from "react-query";
+import { DiaryWriteSSRProps } from "../../../pages/diary/[id]";
+import { getDiaryList } from "../../api/Diary";
 import DiaryPage from "../../components/DiaryPage";
+import DiaryPageSkeleton from "../../components/DiaryPageSkeleton";
+import queryKeys from "../../constant/queryKeys";
+import { useDiaryList } from "../../queries/Diary";
 import * as S from "./styles";
 
-const DirayContainer = () => {
+const DirayContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
+  const { data, isLoading, isError, error, isSuccess } = useDiaryList(
+    Number(id)
+  );
+  const router = useRouter();
+
+  useEffect(() => {
+    if (
+      isError &&
+      axios.isAxiosError(error) &&
+      error.response?.status === 404
+    ) {
+      router.push("/404");
+    }
+  }, [error, isError, router]);
+
   return (
     <S.Container>
-      <S.Title>user1234와의 일기장</S.Title>
+      {isLoading && <S.Title>로딩중...</S.Title>}
+      {isError && <S.Title>오류 발생</S.Title>}
+      {isSuccess && <S.Title>{data.data.matchedUserName}와의 일기장</S.Title>}
       <S.Pages>
-        <S.Add>+ 일기 쓰기</S.Add>
-        {Array(2)
-          .fill(0)
-          .map((_, index) => (
-            <DiaryPage key={index} />
-          ))}
+        <Link href={`/diary/${id}/write`} passHref>
+          <S.Add>+ 일기 쓰기</S.Add>
+        </Link>
+        {isLoading &&
+          new Array(2)
+            .fill(0)
+            .map((_, index) => <DiaryPageSkeleton key={index} />)}
+        {data?.data.list.map((value, index) => (
+          <DiaryPage {...value} key={index} />
+        ))}
+        {isSuccess && data.data.list.length <= 0 && (
+          <S.Message>
+            주고받은 일기가 없습니다. 지금 교환을 시작해보세요.
+          </S.Message>
+        )}
       </S.Pages>
     </S.Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const queryClient = new QueryClient();
+  const query = context.query.id;
+
+  if (typeof query === "string" && !isNaN(Number(query))) {
+    await queryClient.prefetchQuery([queryKeys.diaryList, query], () =>
+      getDiaryList(Number(query))
+    );
+  }
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 };
 
 export default DirayContainer;

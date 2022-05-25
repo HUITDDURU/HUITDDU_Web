@@ -109,7 +109,7 @@ const ProfileContainer: NextPage = () => {
         />
         <div>
           <S.Description>프로필 사진</S.Description>
-          {profilePicture !== "" && (
+          {profilePicture && (
             <S.ProfileWrapper>
               <S.ProfileContainer>
                 <Image
