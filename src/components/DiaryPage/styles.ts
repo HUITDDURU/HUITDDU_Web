@@ -46,6 +46,10 @@ export const Margin16 = styled.div`
   margin-top: 16px;
 `;
 
+export const Margin8 = styled.div`
+  margin-top: 8px;
+`;
+
 export const Margin40 = styled.div`
   margin-top: 40px;
 `;
@@ -58,4 +62,23 @@ export const Image = styled.div`
   height: 500px;
   width: 600px;
   margin: 0 auto;
+`;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ImageWrapper = styled.div`
+  border-radius: 10px;
+  overflow: hidden;
+
+  span {
+    display: block !important;
+  }
+
+  image {
+    display: block !important;
+  }
 `;
