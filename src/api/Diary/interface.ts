@@ -2,7 +2,7 @@ interface DiaryListItem {
   id: number;
   title: string;
   feeling: string;
-  image: string;
+  image?: string;
   content: string;
   date: string;
   writer: string;
@@ -19,7 +19,7 @@ interface PostDiaryRequest {
   feeling: string;
   date: string;
   contents: string;
-  imageUrl: string;
+  imageUrl?: string;
 }
 
 export type { DiaryListItem, GetDiaryListResponse, PostDiaryRequest };
