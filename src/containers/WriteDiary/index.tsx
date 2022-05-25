@@ -231,7 +231,7 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
           <S.Subtitle>사진</S.Subtitle>
           {imageUrl ? (
             <S.ImageContainer>
-              <S.ImageWrapper>
+              <S.ImageWrapper onClick={() => inputRef.current?.click()}>
                 <Image
                   src={imageUrl}
                   alt="업로드된 사진"
@@ -239,6 +239,7 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
                   width={500}
                   height={500}
                 />
+                <S.Cover className="cover" />
               </S.ImageWrapper>
             </S.ImageContainer>
           ) : (
