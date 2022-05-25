@@ -27,6 +27,7 @@ export const Add = styled.a`
 
 export const Container = styled.div`
   width: 100%;
+  margin-bottom: 200px;
 `;
 
 export const Pages = styled.div`

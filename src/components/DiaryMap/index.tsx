@@ -26,14 +26,7 @@ const DiaryMap = () => {
   );
   const { data, isLoading, isError } = useDiaryProgress();
 
-  const list = useMemo(
-    () =>
-      data?.data.sort(
-        (a, b) =>
-          new Date(a.diary.date).getTime() - new Date(b.diary.date).getTime()
-      ),
-    [data]
-  );
+  const list = useMemo(() => data?.data, [data]);
 
   const renderColumn = useMemo(() => {
     if (isLoading) {
@@ -114,7 +107,7 @@ const DiaryMap = () => {
               backgroundColor: color,
               top: `calc(50% + ${offset} * 80px)`,
             };
-            const diff = getDiff(elem.diary.date, key);
+            const diff = getDiff(elem.diary.createdAt, key);
 
             const startStyle = {
               ...style,

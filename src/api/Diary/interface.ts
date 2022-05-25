@@ -7,6 +7,7 @@ interface DiaryListItem {
   date: string;
   writer: string;
   createdAt: string;
+  userImage?: string;
 }
 
 type GetDiaryListResponse = {

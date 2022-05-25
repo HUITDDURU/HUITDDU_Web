@@ -4,16 +4,25 @@ import { DiaryListItem } from "../../api/Diary/interface";
 import { FC } from "react";
 import moment from "moment";
 import Image from "next/image";
+import ImageWithDefaultImage from "../ImageWithDefaultImage";
+import DefaultImage from "../../assets/images/default-user.png";
 
 const DiaryPage: FC<DiaryListItem> = (props) => {
-  const { content, date, feeling, image, title, writer } = props;
+  const { content, date, feeling, image, title, writer, userImage } = props;
 
   return (
     <S.Container>
       <S.TitleContainer>
         <S.Title>{title}</S.Title>
         <S.UseContainer>
-          <S.UserProfile />
+          <S.UserProfile>
+            <ImageWithDefaultImage
+              defaultImage={DefaultImage}
+              src={userImage}
+              width={32}
+              height={32}
+            />
+          </S.UserProfile>
           <S.UserName>{writer}</S.UserName>
         </S.UseContainer>
       </S.TitleContainer>
@@ -39,8 +48,8 @@ const DiaryPage: FC<DiaryListItem> = (props) => {
       ) : (
         <S.Margin16 />
       )}
-
-      <S.Gray>내용</S.Gray>
+      <S.Margin40 />
+      <S.Hr />
       <S.Margin8 />
       <Editor readOnly value={content} />
     </S.Container>

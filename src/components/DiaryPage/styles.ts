@@ -29,6 +29,7 @@ export const UserProfile = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  overflow: hidden;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
@@ -52,6 +53,10 @@ export const Margin8 = styled.div`
 
 export const Margin40 = styled.div`
   margin-top: 40px;
+`;
+
+export const Hr = styled.hr`
+  color: ${({ theme }) => theme.colors.grayscale.gray2};
 `;
 
 export const Image = styled.div`
