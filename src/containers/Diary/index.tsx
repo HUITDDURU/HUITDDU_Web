@@ -1,36 +1,22 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
-import { WithRouterProps } from "next/dist/client/with-router";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 import { dehydrate, QueryClient } from "react-query";
+import { DiaryWriteSSRProps } from "../../../pages/diary/[id]";
 import { getDiaryList } from "../../api/Diary";
 import DiaryPage from "../../components/DiaryPage";
 import DiaryPageSkeleton from "../../components/DiaryPageSkeleton";
 import queryKeys from "../../constant/queryKeys";
-import useRouterWithPageTransition from "../../hooks/useRouterWithPageTransition";
 import { useDiaryList } from "../../queries/Diary";
 import * as S from "./styles";
 
-const DirayContainer: FC<WithRouterProps> = ({ router }) => {
-  const push = useRouterWithPageTransition();
-  const queryKey = "id";
-  const id =
-    router.query[queryKey] ||
-    router.asPath.match(new RegExp(`[&?]${queryKey}=(.*)(&|$)`));
+const DirayContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
   const { data, isLoading, isError, error, isSuccess } = useDiaryList(
-    id ? Number(id) : null
+    Number(id)
   );
-
-  useEffect(() => {
-    if (
-      !(id && typeof id === "string" && !isNaN(Number(id))) &&
-      router.isReady
-    ) {
-      push("/404", 500);
-    }
-  }, [id, push, router.isReady]);
+  const router = useRouter();
 
   useEffect(() => {
     if (
@@ -55,8 +41,8 @@ const DirayContainer: FC<WithRouterProps> = ({ router }) => {
           new Array(2)
             .fill(0)
             .map((_, index) => <DiaryPageSkeleton key={index} />)}
-        {data?.data.list.map((_, index) => (
-          <DiaryPage key={index} />
+        {data?.data.list.map((value, index) => (
+          <DiaryPage {...value} key={index} />
         ))}
         {isSuccess && data.data.list.length <= 0 && (
           <S.Message>
@@ -85,4 +71,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default withRouter(DirayContainer);
+export default DirayContainer;
