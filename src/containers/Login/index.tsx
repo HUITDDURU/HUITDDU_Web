@@ -10,6 +10,7 @@ import FormInput, { FormInputRef } from "../../components/FormInput";
 import storageKeys from "../../constant/storageKeys";
 import { useLogin } from "../../queries/Auth";
 import * as S from "./styles";
+import cookie from "react-cookies";
 
 interface LoginInput {
   email: string;
@@ -81,6 +82,21 @@ const LoginContainer: NextPage = () => {
       localStorage.setItem(storageKeys.accessToken, accessToken);
       localStorage.setItem(storageKeys.refreshToken, refreshToken);
       localStorage.setItem(storageKeys.expiresAt, expiresAt.toISOString());
+      const d = new Date();
+      d.setFullYear(3000);
+      cookie.save(storageKeys.accessToken, accessToken, {
+        path: "/",
+        expires: d,
+      });
+      cookie.save(storageKeys.refreshToken, refreshToken, {
+        path: "/",
+        expires: d,
+      });
+      cookie.save(storageKeys.expiresAt, expiresAt.toISOString(), {
+        path: "/",
+        expires: d,
+      });
+
       router.push("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 404) {

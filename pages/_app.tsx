@@ -14,6 +14,7 @@ import RefreshError from "../src/class/RefreshError";
 import storageKeys from "../src/constant/storageKeys";
 import NextNProgress from "nextjs-progressbar";
 import { ReactQueryDevtools } from "react-query/devtools";
+import cookie from "react-cookies";
 
 const Container = styled.div`
   display: flex;
@@ -44,6 +45,22 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       localStorage.removeItem(storageKeys.accessToken);
       localStorage.removeItem(storageKeys.refreshToken);
       localStorage.removeItem(storageKeys.expiresAt);
+
+      cookie.save(storageKeys.accessToken, "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(),
+      });
+      cookie.save(storageKeys.refreshToken, "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(),
+      });
+      cookie.save(storageKeys.expiresAt, "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(),
+      });
     }
   };
 
