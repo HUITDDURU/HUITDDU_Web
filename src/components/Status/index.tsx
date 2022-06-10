@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { FC, memo } from "react";
 import { UseQueryResult } from "react-query";
 import { GetMatchedUserResponse } from "../../api/Main/interface";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import StatusSkeleton from "../StatusSkeleton";
 
 interface PropsType {
-  data: UseQueryResult<AxiosResponse<GetMatchedUserResponse, unknown>, unknown>;
+  data: UseQueryResult<GetMatchedUserResponse>;
 }
 
 const Status: FC<PropsType> = (props) => {
@@ -69,7 +69,7 @@ const Status: FC<PropsType> = (props) => {
             <ImageWithDefaultImage
               width={150}
               height={150}
-              src={data?.data.user1}
+              src={data?.user1}
               defaultImage={DefaultImage}
             />
           </S.Profile>
@@ -79,7 +79,7 @@ const Status: FC<PropsType> = (props) => {
             <ImageWithDefaultImage
               width={150}
               height={150}
-              src={data?.data.user2}
+              src={data?.user2}
               defaultImage={DefaultImage}
             />
           </S.Profile>
@@ -87,7 +87,7 @@ const Status: FC<PropsType> = (props) => {
       </S.ProfileOuter>
       <S.Content>
         <div>
-          <b>당신</b>과&nbsp;<b>{data?.data.user2}</b>님이
+          <b>당신</b>과&nbsp;<b>{data?.user2}</b>님이
         </div>
         <div>일기를 교환하고 있습니다.</div>
       </S.Content>
