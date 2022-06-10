@@ -11,6 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   grid-column: span 1;
   grid-row: span 1;
+  user-select: none;
 `;
 
 export const Profile = styled.div`

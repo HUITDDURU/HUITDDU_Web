@@ -6,6 +6,7 @@ export const Container = styled.div`
   border-radius: 10px;
   padding: 16px;
   padding-top: 40px;
+  user-select: none;
 `;
 
 export const Profile = styled.div`
