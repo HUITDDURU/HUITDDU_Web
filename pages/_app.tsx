@@ -8,13 +8,13 @@ import styled from "@emotion/styled";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import LoginWrapper from "../src/components/LoginWrapper";
-import { RecoilRoot } from "recoil";
 import { useMemo, useState } from "react";
 import RefreshError from "../src/class/RefreshError";
 import storageKeys from "../src/constant/storageKeys";
 import NextNProgress from "nextjs-progressbar";
 import { ReactQueryDevtools } from "react-query/devtools";
 import cookie from "react-cookies";
+import SignUpProvider from "../src/components/SignUpProvider";
 
 const Container = styled.div`
   display: flex;
@@ -70,7 +70,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     if (router.pathname.startsWith("/login")) {
       return (
         <LoginWrapper>
-          <Component {...pageProps} />
+          <SignUpProvider>
+            <Component {...pageProps} />
+          </SignUpProvider>
         </LoginWrapper>
       );
     }
@@ -92,17 +94,15 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <RecoilRoot>
-            {content}
-            <Toaster position="top-center" />
-            <NextNProgress
-              color={theme.colors.primary}
-              height={3}
-              showOnShallow={true}
-              options={{ showSpinner: false }}
-            />
-            <ReactQueryDevtools />
-          </RecoilRoot>
+          {content}
+          <Toaster position="top-center" />
+          <NextNProgress
+            color={theme.colors.primary}
+            height={3}
+            showOnShallow={true}
+            options={{ showSpinner: false }}
+          />
+          <ReactQueryDevtools />
         </Hydrate>
       </QueryClientProvider>
     </ThemeProvider>

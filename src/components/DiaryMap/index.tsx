@@ -24,9 +24,7 @@ const DiaryMap = () => {
     () => [theme.colors.secondary, ...Object.values(theme.colors.sub)],
     [theme.colors.secondary, theme.colors.sub]
   );
-  const { data, isLoading, isError } = useDiaryProgress();
-
-  const list = useMemo(() => data?.data, [data]);
+  const { data: list, isLoading, isError } = useDiaryProgress();
 
   const renderColumn = useMemo(() => {
     if (isLoading) {

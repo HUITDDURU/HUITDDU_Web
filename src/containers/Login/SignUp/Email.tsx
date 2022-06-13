@@ -3,17 +3,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { useRecoilState } from "recoil";
-import signUpState from "../../../atom/signUpState";
 import Button from "../../../components/Buttons/Button";
 import FormInput, { FormInputRef } from "../../../components/FormInput";
 import useRouterWithPageTransition from "../../../hooks/useRouterWithPageTransition";
+import useSignUpContext from "../../../hooks/useSignUpContext";
 import { useEmail } from "../../../queries/Auth";
 import * as S from "../styles";
 
 const EmailContainer: NextPage = () => {
   const router = useRouter();
-  const [signUp, setSignUp] = useRecoilState(signUpState);
+  const [signUp, setSignUp] = useSignUpContext();
   const { email, certificationCode, isEmailConfirmationed } = signUp;
   const push = useRouterWithPageTransition();
   const { certificationCode: codeCertification } = useEmail();

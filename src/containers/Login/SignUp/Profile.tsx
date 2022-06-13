@@ -4,17 +4,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useCallback, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { useRecoilState } from "recoil";
-import signUpState from "../../../atom/signUpState";
 import Button from "../../../components/Buttons/Button";
 import FormInput from "../../../components/FormInput";
 import useRouterWithPageTransition from "../../../hooks/useRouterWithPageTransition";
+import useSignUpContext from "../../../hooks/useSignUpContext";
 import { useRegister } from "../../../queries/Auth";
 import { useImageMutation } from "../../../queries/Image";
 import * as S from "../styles";
 
 const ProfileContainer: NextPage = () => {
-  const [signUp, setSignUp] = useRecoilState(signUpState);
+  const [signUp, setSignUp] = useSignUpContext();
   const { isEmailConfirmationed } = signUp;
   const push = useRouterWithPageTransition();
   const { nickname, intro, profilePicture } = signUp;

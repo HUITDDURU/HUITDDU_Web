@@ -5,6 +5,8 @@ import * as S from "./styles";
 import DefaultImage from "../../assets/images/default-user.png";
 import ImageWithDefaultImage from "../ImageWithDefaultImage";
 import Link from "next/link";
+import moment from "moment";
+import "moment/locale/ko";
 
 const DiaryCard: FC<DiaryItem> = (props) => {
   const { currentUserImg, hoursAgo, isMyTurn, mateImg, mateName, diaryId } =
@@ -41,7 +43,10 @@ const DiaryCard: FC<DiaryItem> = (props) => {
         <S.Title>{mateName}와의 일기장</S.Title>
         <S.InfoContainer>
           <S.Gray>{isMyTurn ? "내 차례" : `${mateName} 차례`}</S.Gray>
-          <S.Gray>{hoursAgo}시간 전</S.Gray>
+          <S.Gray>
+            {!!hoursAgo &&
+              `${moment().locale("ko").add(-hoursAgo, "hours").fromNow()}`}
+          </S.Gray>
         </S.InfoContainer>
       </S.Container>
     </Link>

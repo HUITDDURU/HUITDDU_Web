@@ -2,7 +2,7 @@ import axios from "axios";
 import moment from "moment";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { memo, useMemo, useRef, useState } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import BorderButton from "../../components/Buttons/BorderButton";
 import Button from "../../components/Buttons/Button";
@@ -11,6 +11,8 @@ import storageKeys from "../../constant/storageKeys";
 import { useLogin } from "../../queries/Auth";
 import * as S from "./styles";
 import cookie from "react-cookies";
+import useSignUpContext from "../../hooks/useSignUpContext";
+import { signUpInitalState } from "../../context";
 
 interface LoginInput {
   email: string;
@@ -28,6 +30,8 @@ const LoginContainer: NextPage = () => {
     email: "",
     password: "",
   });
+  const [, setSignUp] = useSignUpContext();
+
   const loginDisabled = useMemo(
     () =>
       ![email, password].every((value) => value.trim().length > 0) ||
@@ -117,6 +121,10 @@ const LoginContainer: NextPage = () => {
       onLoginClick();
     }
   };
+
+  useEffect(() => {
+    setSignUp(signUpInitalState);
+  }, []);
 
   return (
     <div>
