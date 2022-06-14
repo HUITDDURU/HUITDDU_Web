@@ -10,4 +10,6 @@ const getDiaryProgress = async () => {
   return (await request.get<GetDiaryProgressResponse>(uri.chronology)).data;
 };
 
-export { getMatchedUser, getDiaryProgress };
+const exitMatching = async () => (await request.put(uri.match)).data;
+
+export { getMatchedUser, getDiaryProgress, exitMatching };
