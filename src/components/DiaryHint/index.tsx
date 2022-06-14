@@ -52,7 +52,7 @@ const DiaryHint: FC<PropsType> = (props) => {
       <>
         <S.Content>
           <div>
-            <b>{data?.user2}</b>
+            <b>{data?.opponent}</b>
             님과
           </div>
           <div>일기를 주고받아보세요.</div>
@@ -62,7 +62,7 @@ const DiaryHint: FC<PropsType> = (props) => {
         </S.Flex>
       </>
     );
-  }, [data?.user2, error, isError]);
+  }, [data, error, isError]);
 
   if (isLoading) {
     return <DiaryHintSkeleton />;

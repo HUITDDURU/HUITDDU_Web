@@ -54,6 +54,7 @@ export const Stop = styled.a`
   color: ${({ theme }) => theme.colors.grayscale.gray1};
   margin-top: 16px;
   transition: color 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
