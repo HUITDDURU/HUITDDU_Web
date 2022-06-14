@@ -40,7 +40,7 @@ const WaitingUser = () => {
   }, [backdropAnimation, nextDot]);
 
   return (
-    <S.Container>
+    <>
       <S.Title>무작위 사용자 찾는중{".".repeat(dot)}</S.Title>
       <S.ImageContainer>
         <S.Backdrop ref={backdropRef} />
@@ -55,7 +55,7 @@ const WaitingUser = () => {
           />
         </S.ProfileImage>
       </S.ImageContainer>
-    </S.Container>
+    </>
   );
 };
 

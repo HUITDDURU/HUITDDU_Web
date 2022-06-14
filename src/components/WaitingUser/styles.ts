@@ -1,13 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const Title = styled.h1`
   font: ${({ theme }) => theme.fonts.heading1};
   color: ${({ theme }) => theme.colors.grayscale.black};

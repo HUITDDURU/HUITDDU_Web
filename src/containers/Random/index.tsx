@@ -5,10 +5,16 @@ import storageKeys from "../../constant/storageKeys";
 import socketEventName from "../../constant/socketEventName";
 import { MatchingUser } from "../../@types/socketResponse";
 import WaitingUser from "../../components/WaitingUser";
+import * as S from "./styles";
+import RandomUserConfirm from "../../components/RandomUserConfirm";
 
 const RandomContainer = () => {
-  const [loading, setIsLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState<MatchingUser | null>(null);
+  const [loading, setIsLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState<MatchingUser | null>({
+    img: null,
+    intro: null,
+    name: "김진근",
+  });
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
 
   useEffect(() => {
@@ -42,10 +48,19 @@ const RandomContainer = () => {
   }, [socket]);
 
   if (loading) {
-    return <WaitingUser />;
+    return (
+      <S.Container>
+        <WaitingUser />
+      </S.Container>
+    );
   }
 
-  if (userInfo) {
+  if (userInfo && socket) {
+    return (
+      <S.Container>
+        <RandomUserConfirm {...userInfo} />
+      </S.Container>
+    );
   }
 
   return <></>;
