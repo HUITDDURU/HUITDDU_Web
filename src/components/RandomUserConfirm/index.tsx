@@ -116,6 +116,8 @@ const RandomUserConfirm: FC<PropsType> = (props) => {
             src={img || DefaultImage}
             width={200}
             height={200}
+            objectFit="cover"
+            objectPosition="center"
           />
         </S.Image>
         <S.IntroContainer>
