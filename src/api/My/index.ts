@@ -1,6 +1,10 @@
 import uri from "../../constant/uri";
 import { request } from "../../utils/axios";
-import { GetMyDiaryListResponse, GetProfileResponse } from "./interface";
+import {
+  GetCodeResponse,
+  GetMyDiaryListResponse,
+  GetProfileResponse,
+} from "./interface";
 
 const getProfile = async () => {
   return (await request.get<GetProfileResponse>(uri.my)).data;
@@ -21,4 +25,8 @@ const getMyDiaryList = async () => {
   return (await request.get<GetMyDiaryListResponse>(uri.myDiaryList)).data;
 };
 
-export { getProfile, changeProfileImage, changeIntro, getMyDiaryList };
+const getCode = async () => {
+  return (await request.get<GetCodeResponse>(uri.code)).data;
+};
+
+export { getProfile, changeProfileImage, changeIntro, getMyDiaryList, getCode };

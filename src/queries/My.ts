@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "react-query";
 import {
   changeIntro,
   changeProfileImage,
+  getCode,
   getMyDiaryList,
   getProfile,
 } from "../api/My";
@@ -22,4 +23,6 @@ const useProfileMutation = () => {
   return { profileImageMutation, introMutation };
 };
 
-export { useProfile, useProfileMutation, useMyDiaryList };
+const useCode = () => useQuery([queryKeys.code], getCode);
+
+export { useProfile, useProfileMutation, useMyDiaryList, useCode };
