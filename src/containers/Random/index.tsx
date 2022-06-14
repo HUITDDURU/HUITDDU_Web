@@ -14,7 +14,7 @@ const RandomContainer = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
 
   const onRefuse = () => {
-    setIsLoading(false);
+    setIsLoading(true);
     setUserInfo(null);
 
     if (socket) {
