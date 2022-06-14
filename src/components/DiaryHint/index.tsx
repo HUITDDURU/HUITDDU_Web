@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { FC, memo, useEffect, useMemo, useState } from "react";
 import { UseQueryResult } from "react-query";
 import { GetMatchedUserResponse } from "../../api/Main/interface";
@@ -9,7 +9,7 @@ import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
 
 interface PropsType {
-  data: UseQueryResult<AxiosResponse<GetMatchedUserResponse, unknown>, unknown>;
+  data: UseQueryResult<GetMatchedUserResponse>;
 }
 
 const DiaryHint: FC<PropsType> = (props) => {
@@ -52,7 +52,7 @@ const DiaryHint: FC<PropsType> = (props) => {
       <>
         <S.Content>
           <div>
-            <b>{data?.data.user2}</b>
+            <b>{data?.user2}</b>
             님과
           </div>
           <div>일기를 주고받아보세요.</div>
@@ -62,7 +62,7 @@ const DiaryHint: FC<PropsType> = (props) => {
         </S.Flex>
       </>
     );
-  }, [data?.data.user2, error, isError]);
+  }, [data?.user2, error, isError]);
 
   if (isLoading) {
     return <DiaryHintSkeleton />;

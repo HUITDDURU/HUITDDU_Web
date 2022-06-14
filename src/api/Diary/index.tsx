@@ -3,9 +3,11 @@ import { request } from "../../utils/axios";
 import { GetDiaryListResponse, PostDiaryRequest } from "./interface";
 
 const getDiaryList = async (diaryId: number) => {
-  return await request.get<GetDiaryListResponse>(
-    `${uri.diary}/${diaryId}${uri.list}`
-  );
+  return (
+    await request.get<GetDiaryListResponse>(
+      `${uri.diary}/${diaryId}${uri.list}`
+    )
+  ).data;
 };
 
 const postDiary = async (diaryId: number, data: PostDiaryRequest) => {

@@ -2,14 +2,13 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useRef } from "react";
-import { useRecoilState } from "recoil";
-import signUpState from "../../../atom/signUpState";
 import Button from "../../../components/Buttons/Button";
 import * as S from "../styles";
 import FormInput, { FormInputRef } from "../../../components/FormInput";
 import { useEmail } from "../../../queries/Auth";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useSignUpContext from "../../../hooks/useSignUpContext";
 
 interface ErrorMessages {
   email?: string;
@@ -19,7 +18,7 @@ interface ErrorMessages {
 
 const EnterInfoContainer: NextPage = () => {
   const router = useRouter();
-  const [signUp, setSignUp] = useRecoilState(signUpState);
+  const [signUp, setSignUp] = useSignUpContext();
   const { email, password, passwordConfirmation, isEmailConfirmationed } =
     signUp;
   const emailRef = useRef<FormInputRef>(null);

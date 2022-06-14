@@ -1,50 +1,75 @@
-import gsap, { Power4 } from "gsap";
-import { useCallback, useEffect, useRef, useState } from "react";
-import ANIMATED_CLASS from "../../constant/animatedClass";
+import { useEffect, useState } from "react";
+import io from "socket.io-client";
+import socketBaseURL from "../../constant/socketBaseURL";
+import storageKeys from "../../constant/storageKeys";
+import socketEventName from "../../constant/socketEventName";
+import { MatchingUser } from "../../@types/socketResponse";
+import WaitingUser from "../../components/WaitingUser";
 import * as S from "./styles";
+import RandomUserConfirm from "../../components/RandomUserConfirm";
 
 const RandomContainer = () => {
-  const backdropRef = useRef<HTMLDivElement>(null);
-  const [dot, setDot] = useState<number>(0);
-  const findAnimationRef = useRef<gsap.core.Tween | null>(null);
+  const [loading, setIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<MatchingUser | null>(null);
+  const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
 
-  const backdropAnimation = useCallback(() => {
-    if (!backdropRef.current) {
-      return;
+  const onRefuse = () => {
+    setIsLoading(false);
+    setUserInfo(null);
+
+    if (socket) {
+      socket.emit(socketEventName.MATCHING_START);
     }
+  };
 
-    findAnimationRef.current = gsap.fromTo(
-      backdropRef.current,
-      { opacity: 0.5, scale: 1 },
-      { opacity: 0, scale: 3, ease: Power4.easeOut, duration: 4, repeat: -1 }
+  useEffect(() => {
+    const token = localStorage.getItem(storageKeys.accessToken);
+
+    setSocket(
+      io(socketBaseURL, {
+        transports: ["websocket"],
+        autoConnect: true,
+        reconnection: true,
+        query: {
+          Authorization: token,
+        },
+      })
     );
   }, []);
 
-  const nextDot = useCallback(() => {
-    setDot((prev) => (prev + 1) % 4);
-    setTimeout(nextDot, 1000);
-  }, []);
-
   useEffect(() => {
-    setTimeout(backdropAnimation, 500);
-    setTimeout(nextDot, 1000);
+    if (socket) {
+      socket.on(socketEventName.ON_MATCHED, (res: MatchingUser) => {
+        setIsLoading(false);
+        setUserInfo(res);
+      });
 
-    return () => {
-      if (findAnimationRef.current) {
-        findAnimationRef.current.kill();
-      }
-    };
-  }, [backdropAnimation, nextDot]);
+      socket.emit(socketEventName.MATCHING_START);
 
-  return (
-    <S.Container className={ANIMATED_CLASS}>
-      <S.Title>무작위 사용자 찾는중{".".repeat(dot)}</S.Title>
-      <S.ImageContainer>
-        <S.Backdrop ref={backdropRef} />
-        <S.ProfileImage />
-      </S.ImageContainer>
-    </S.Container>
-  );
+      return () => {
+        socket.emit(socketEventName.MATCHING_CANCEL);
+        socket.disconnect();
+      };
+    }
+  }, [socket]);
+
+  if (loading) {
+    return (
+      <S.Container>
+        <WaitingUser />
+      </S.Container>
+    );
+  }
+
+  if (userInfo && socket) {
+    return (
+      <S.Container>
+        <RandomUserConfirm refuse={onRefuse} data={userInfo} socket={socket} />
+      </S.Container>
+    );
+  }
+
+  return <></>;
 };
 
 export default RandomContainer;

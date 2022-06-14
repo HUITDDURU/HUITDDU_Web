@@ -1,9 +1,5 @@
-import { GetServerSideProps } from "next";
-import { dehydrate, QueryClient } from "react-query";
-import { getMyDiaryList, getProfile } from "../../api/My";
 import MyDiaryList from "../../components/MyDiaryList";
 import MyInfoAside from "../../components/MyInfoAside";
-import queryKeys from "../../constant/queryKeys";
 import * as S from "./styles";
 
 const MyDiaryContainer = () => {
@@ -17,18 +13,6 @@ const MyDiaryContainer = () => {
       </S.Container>
     </S.Outer>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery([queryKeys.my], getProfile);
-  await queryClient.prefetchQuery([queryKeys.myDiaryList], getMyDiaryList);
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
 };
 
 export default MyDiaryContainer;

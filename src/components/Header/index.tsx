@@ -6,6 +6,7 @@ import BorderButton from "../Buttons/BorderButton";
 import { memo } from "react";
 import storageKeys from "../../constant/storageKeys";
 import { useRouter } from "next/router";
+import cookie from "react-cookies";
 
 const Header = () => {
   const router = useRouter();
@@ -17,6 +18,22 @@ const Header = () => {
       localStorage.removeItem(storageKeys.accessToken);
       localStorage.removeItem(storageKeys.refreshToken);
       localStorage.removeItem(storageKeys.expiresAt);
+
+      cookie.save(storageKeys.accessToken, "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(),
+      });
+      cookie.save(storageKeys.refreshToken, "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(),
+      });
+      cookie.save(storageKeys.expiresAt, "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(),
+      });
     }
   };
 

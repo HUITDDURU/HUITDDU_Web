@@ -18,8 +18,8 @@ const MyInfoAside = () => {
   const queryClient = useQueryClient();
 
   const intro = useMemo(() => {
-    if (data?.data.intro && data.data.intro.trim() !== "") {
-      return data.data.intro;
+    if (data?.intro && data.intro.trim() !== "") {
+      return data.intro;
     }
 
     return null;
@@ -55,7 +55,7 @@ const MyInfoAside = () => {
             height={305}
             objectFit="cover"
             objectPosition="center"
-            src={data.data.img}
+            src={data.img}
             defaultImage={DefaultImage}
             alt="프로필 사진"
           />
@@ -85,7 +85,7 @@ const MyInfoAside = () => {
       </S.Profile>
       {isLoading && <S.Name>로딩중</S.Name>}
       {isError && <S.Name>오류 발생</S.Name>}
-      {isSuccess && <S.Name>{data.data.name}</S.Name>}
+      {isSuccess && <S.Name>{data.name}</S.Name>}
       <Intro
         isError={isError}
         isSuccess={isSuccess}

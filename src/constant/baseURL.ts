@@ -1,3 +1,3 @@
-const baseURL = "http://3.39.139.93:9000" as const;
+const baseURL = process.env.NEXT_PUBLIC_BASEURL || "";
 
 export default baseURL;

@@ -3,11 +3,12 @@ import moment from "moment";
 import { reissuanceToken } from "../../api/Auth";
 import RefreshError from "../../class/RefreshError";
 import storageKeys from "../../constant/storageKeys";
+import cookie from "react-cookies";
 
 const saveTokenInReqestHeader = async (
   config: AxiosRequestConfig
 ): Promise<AxiosRequestConfig> => {
-  if (!config.headers) {
+  if (!config.headers || typeof window === "undefined") {
     return config;
   }
 
@@ -35,13 +36,29 @@ const saveTokenInReqestHeader = async (
     //엑세스 토큰 업데이트
     accessToken = newAT;
 
+    const d = new Date();
+    d.setFullYear(3000);
+
     //로컬스토리지에 저장
     localStorage.setItem(storageKeys.accessToken, newAT);
     localStorage.setItem(storageKeys.refreshToken, newRT);
     localStorage.setItem(
       storageKeys.expiresAt,
-      moment().add(30, "minute").toISOString()
+      moment().add(30, "days").toISOString()
     );
+
+    cookie.save(storageKeys.accessToken, newAT, {
+      path: "/",
+      expires: d,
+    });
+    cookie.save(storageKeys.refreshToken, newRT, {
+      path: "/",
+      expires: d,
+    });
+    cookie.save(storageKeys.expiresAt, moment().add(30, "days").toISOString(), {
+      path: "/",
+      expires: d,
+    });
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 401) {
       //토큰 리프레시 실패

@@ -109,9 +109,11 @@ export const ImageContainer = styled.div`
   justify-content: center;
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.button`
+  cursor: pointer;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 
   span {
     display: block !important;
@@ -120,4 +122,20 @@ export const ImageWrapper = styled.div`
   image {
     display: block !important;
   }
+
+  &:hover .cover {
+    opacity: 1;
+  }
+`;
+
+export const Cover = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.grayscale.black}50;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
 `;
