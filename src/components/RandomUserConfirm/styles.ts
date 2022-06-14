@@ -51,6 +51,7 @@ export const ButtonContainer = styled.div`
   column-gap: 8px;
   width: 100%;
   margin-top: 16px;
+  justify-content: center;
 `;
 
 export const Button = styled.button`
@@ -81,7 +82,7 @@ export const Refuse = styled(Button)`
   }
 `;
 
-export const TextButton = styled.div`
+export const TextButton = styled.button`
   padding: 12px;
   font: ${({ theme }) => theme.fonts.body2};
   color: ${({ theme }) => theme.colors.grayscale.gray1};
