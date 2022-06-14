@@ -80,3 +80,16 @@ export const Refuse = styled(Button)`
     color: ${({ theme }) => theme.colors.grayscale.white};
   }
 `;
+
+export const TextButton = styled.div`
+  padding: 12px;
+  font: ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.grayscale.gray1};
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  background-color: ${({ theme }) => theme.colors.grayscale.white};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.grayscale.lightGray2};
+  }
+`;

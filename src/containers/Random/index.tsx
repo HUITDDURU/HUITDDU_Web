@@ -9,13 +9,18 @@ import * as S from "./styles";
 import RandomUserConfirm from "../../components/RandomUserConfirm";
 
 const RandomContainer = () => {
-  const [loading, setIsLoading] = useState(false);
-  const [userInfo, setUserInfo] = useState<MatchingUser | null>({
-    img: null,
-    intro: null,
-    name: "김진근",
-  });
+  const [loading, setIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<MatchingUser | null>(null);
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
+
+  const onRefuse = () => {
+    setIsLoading(false);
+    setUserInfo(null);
+
+    if (socket) {
+      socket.emit(socketEventName.MATCHING_START);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem(storageKeys.accessToken);
@@ -42,6 +47,7 @@ const RandomContainer = () => {
       socket.emit(socketEventName.MATCHING_START);
 
       return () => {
+        socket.emit(socketEventName.MATCHING_CANCEL);
         socket.disconnect();
       };
     }
@@ -58,7 +64,7 @@ const RandomContainer = () => {
   if (userInfo && socket) {
     return (
       <S.Container>
-        <RandomUserConfirm {...userInfo} />
+        <RandomUserConfirm refuse={onRefuse} data={userInfo} socket={socket} />
       </S.Container>
     );
   }
