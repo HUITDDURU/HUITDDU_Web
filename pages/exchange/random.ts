@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const queryClient = new QueryClient();
 
   try {
-    await queryClient.prefetchQuery([queryKeys.matchedUser], getMatchedUser);
+    await getMatchedUser();
 
     return { redirect: { destination: "/" }, props: {} };
   } catch (error) {}
