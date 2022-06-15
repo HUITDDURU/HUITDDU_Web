@@ -1,10 +1,12 @@
 import React from "react";
 import ANIMATED_CLASS from "../../constant/animatedClass";
 import useInput, { EventFilter } from "../../hooks/useInput";
+import { useCode } from "../../queries/My";
 import * as S from "./styles";
 
 const FriendContainer = () => {
   const maxCodeLength = 6;
+  const { data } = useCode();
 
   const evnetFilter: EventFilter = (e) => {
     let v = e.target.value.toUpperCase();
@@ -12,7 +14,7 @@ const FriendContainer = () => {
     let temp = "";
 
     v.split("").forEach((value) => {
-      if (/[A-Z]/g.test(value)) {
+      if (/[0-9]/g.test(value)) {
         temp += value;
       }
     });
@@ -31,7 +33,7 @@ const FriendContainer = () => {
 
   return (
     <S.Container>
-      <S.Title className={ANIMATED_CLASS}>당신의 코드는 JYCNKF</S.Title>
+      <S.Title className={ANIMATED_CLASS}>당신의 코드는 {data?.code}</S.Title>
       <S.CodeDescription className={ANIMATED_CLASS}>
         친구에게 코드를 보내고 일기 교환을 시작하세요.
       </S.CodeDescription>
