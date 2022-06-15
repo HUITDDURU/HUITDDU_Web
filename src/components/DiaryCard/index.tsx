@@ -25,6 +25,8 @@ const DiaryCard: FC<DiaryItem> = (props) => {
                 alt="내 프로필 이미지"
                 width={110}
                 height={110}
+                objectFit="cover"
+                objectPosition="center"
               />
             </S.Profile>
           </S.ProfileOuter>
@@ -36,6 +38,8 @@ const DiaryCard: FC<DiaryItem> = (props) => {
                 alt="유저 프로필 이미지"
                 width={110}
                 height={110}
+                objectFit="cover"
+                objectPosition="center"
               />
             </S.Profile>
           </S.ProfileOuter>

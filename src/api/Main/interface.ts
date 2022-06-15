@@ -11,6 +11,8 @@ interface DiaryProgressBody {
   date: string;
   writer: string;
   createdAt: string;
+  image: string | null;
+  content: string;
 }
 
 interface DiaryProgressItem {

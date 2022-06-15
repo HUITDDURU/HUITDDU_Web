@@ -7,7 +7,6 @@ import { ImageIcon } from "../../assets/icons";
 import { useMemo, useRef } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
-import queryKeys from "../../constant/queryKeys";
 import Intro from "../Intro";
 import ImageWithDefaultImage from "../ImageWithDefaultImage";
 
@@ -39,7 +38,7 @@ const MyInfoAside = () => {
       error: "사진 업로드 실패.",
     });
 
-    queryClient.invalidateQueries([queryKeys.my]);
+    queryClient.invalidateQueries();
   };
 
   const onProfileClick = () => {
