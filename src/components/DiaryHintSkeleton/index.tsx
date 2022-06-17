@@ -1,5 +1,4 @@
 import { useTheme } from "@emotion/react";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
 
@@ -7,7 +6,7 @@ const DiaryHintSkeleton = () => {
   const theme = useTheme();
 
   return (
-    <S.Container className={ANIMATED_CLASS}>
+    <S.Container>
       <div>
         {new Array(4).fill(0).map((_, index) => (
           <S.Diary style={{ zIndex: 4 - index }} key={index}>

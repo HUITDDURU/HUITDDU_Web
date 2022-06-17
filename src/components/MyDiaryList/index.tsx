@@ -1,4 +1,3 @@
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useMyDiaryList } from "../../queries/My";
 import DiaryCard from "../DiaryCard";
 import DiaryCardSkeleton from "../DiaryCardSkeleton";
@@ -8,7 +7,7 @@ const MyDiaryList = () => {
   const { data, isLoading, isError, isSuccess } = useMyDiaryList();
 
   return (
-    <S.Container className={ANIMATED_CLASS}>
+    <S.Container>
       <S.Title>일기장</S.Title>
       {isError && <S.Message>오류 발생</S.Message>}
       {isSuccess && data.length <= 0 && (

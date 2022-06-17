@@ -1,4 +1,5 @@
 import moment from "moment";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useCallback, useMemo, useRef, useState } from "react";
@@ -7,7 +8,6 @@ import { DiaryWriteSSRProps } from "../../../pages/diary/[id]";
 import BorderBrandButton from "../../components/Buttons/BorderBrandButton";
 import Button from "../../components/Buttons/Button";
 import Editor from "../../components/Editor";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useDiaryMutation } from "../../queries/Diary";
 import { useImageMutation } from "../../queries/Image";
 import * as S from "./styles";
@@ -204,69 +204,76 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
   };
 
   return (
-    <S.Container>
-      <S.Title className={ANIMATED_CLASS}>일기 쓰기</S.Title>
-      <S.ContentContainer>
-        <div className={ANIMATED_CLASS}>
-          <S.Subtitle>제목</S.Subtitle>
-          <S.TitleInput
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="제목을 입력해주세요..."
-            maxLength={100}
-          />
-        </div>
-        <div className={ANIMATED_CLASS}>
-          <S.Subtitle>날짜</S.Subtitle>
-          <S.DateOuter>
-            <S.DateContainer>{renderDates}</S.DateContainer>
-            <span>선택된 날짜 : {selectedDate.format("yyyy년 MM월 DD일")}</span>
-          </S.DateOuter>
-        </div>
-        <div className={ANIMATED_CLASS}>
-          <S.Subtitle>기분</S.Subtitle>
-          <S.FeelingContainer>{renderFeelings}</S.FeelingContainer>
-        </div>
-        <div className={ANIMATED_CLASS}>
-          <S.Subtitle>사진</S.Subtitle>
-          {imageUrl ? (
-            <S.ImageContainer>
-              <S.ImageWrapper onClick={() => inputRef.current?.click()}>
-                <Image
-                  src={imageUrl}
-                  alt="업로드된 사진"
-                  objectFit="contain"
-                  width={500}
-                  height={500}
-                />
-                <S.Cover className="cover" />
-              </S.ImageWrapper>
-            </S.ImageContainer>
-          ) : (
-            <BorderBrandButton onClick={() => inputRef.current?.click()}>
-              사진 업로드
-            </BorderBrandButton>
-          )}
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/png, image/jpeg"
-            style={{ display: "none" }}
-            onClick={(e) => e.stopPropagation()}
-            onChange={onFileChange}
-          />
-        </div>
-        <div className={ANIMATED_CLASS}>
-          <S.Subtitle>내용</S.Subtitle>
-          <Editor value={content} onChange={(e) => setContent(e)} />
-        </div>
-      </S.ContentContainer>
-      <S.Buttons className={ANIMATED_CLASS}>
-        <Button onClick={onExchange} disabled={title.trim().length <= 0}>
-          교환
-        </Button>
-      </S.Buttons>
-    </S.Container>
+    <>
+      <Head>
+        <title>일기 작성 - 휘뚜루마뚜루</title>
+      </Head>
+      <S.Container>
+        <S.Title>일기 쓰기</S.Title>
+        <S.ContentContainer>
+          <div>
+            <S.Subtitle>제목</S.Subtitle>
+            <S.TitleInput
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="제목을 입력해주세요..."
+              maxLength={100}
+            />
+          </div>
+          <div>
+            <S.Subtitle>날짜</S.Subtitle>
+            <S.DateOuter>
+              <S.DateContainer>{renderDates}</S.DateContainer>
+              <span>
+                선택된 날짜 : {selectedDate.format("yyyy년 MM월 DD일")}
+              </span>
+            </S.DateOuter>
+          </div>
+          <div>
+            <S.Subtitle>기분</S.Subtitle>
+            <S.FeelingContainer>{renderFeelings}</S.FeelingContainer>
+          </div>
+          <div>
+            <S.Subtitle>사진</S.Subtitle>
+            {imageUrl ? (
+              <S.ImageContainer>
+                <S.ImageWrapper onClick={() => inputRef.current?.click()}>
+                  <Image
+                    src={imageUrl}
+                    alt="업로드된 사진"
+                    objectFit="contain"
+                    width={500}
+                    height={500}
+                  />
+                  <S.Cover className="cover" />
+                </S.ImageWrapper>
+              </S.ImageContainer>
+            ) : (
+              <BorderBrandButton onClick={() => inputRef.current?.click()}>
+                사진 업로드
+              </BorderBrandButton>
+            )}
+            <input
+              ref={inputRef}
+              type="file"
+              accept="image/png, image/jpeg"
+              style={{ display: "none" }}
+              onClick={(e) => e.stopPropagation()}
+              onChange={onFileChange}
+            />
+          </div>
+          <div>
+            <S.Subtitle>내용</S.Subtitle>
+            <Editor value={content} onChange={(e) => setContent(e)} />
+          </div>
+        </S.ContentContainer>
+        <S.Buttons>
+          <Button onClick={onExchange} disabled={title.trim().length <= 0}>
+            교환
+          </Button>
+        </S.Buttons>
+      </S.Container>
+    </>
   );
 };
 

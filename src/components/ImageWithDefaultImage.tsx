@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image, { ImageProps } from "next/image";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface PropsType {
   defaultImage: StaticImageData;
@@ -17,6 +17,10 @@ const ImageWithDefaultImage: FC<Omit<ImageProps, "src"> & PropsType> = (
   const onImageError = () => {
     setSrcState(defaultImage);
   };
+
+  useEffect(() => {
+    setSrcState(src);
+  }, [src]);
 
   return (
     <Image onError={onImageError} {...rest} src={srcState || defaultImage} />

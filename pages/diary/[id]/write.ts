@@ -5,9 +5,9 @@ export interface DiarySSRProps {
 }
 
 export const getServerSideProps: GetServerSideProps<DiarySSRProps> = async (
-  context
+  ctx
 ) => {
-  const { params } = context;
+  const { params } = ctx;
 
   return {
     props: {

@@ -9,6 +9,7 @@ import { useEmail } from "../../../queries/Auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import useSignUpContext from "../../../hooks/useSignUpContext";
+import Head from "next/head";
 
 interface ErrorMessages {
   email?: string;
@@ -133,54 +134,59 @@ const EnterInfoContainer: NextPage = () => {
     ) || postCode.isLoading;
 
   return (
-    <div>
-      <S.Title>정보 입력</S.Title>
-      <S.InputContainer>
-        <FormInput
-          ref={emailRef}
-          title="이메일"
-          placeholder="이메일을 입력해주세요..."
-          name="email"
-          autoComplete="username"
-          type="email"
-          onChange={onChange}
-          value={email}
-          disabled={isEmailConfirmationed}
-        />
-        <FormInput
-          title="비밀번호"
-          placeholder="비밀번호를 입력해주세요..."
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          onChange={onChange}
-          value={password}
-          ref={passwordRef}
-          info={`비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자가 포함된 8 ~ 16자로 구성되어야 합니다.`}
-        />
-        <FormInput
-          title="비밀번호 확인"
-          placeholder="비밀번호를 입력해주세요..."
-          name="passwordConfirmation"
-          type="password"
-          autoComplete="current-password"
-          onChange={onChange}
-          value={passwordConfirmation}
-          ref={passwordConfirmationRef}
-        />
-      </S.InputContainer>
-      <S.BottomContainer>
-        <S.ToLogin>
-          <Link href="/login">로그인으로</Link>
-        </S.ToLogin>
-        <S.ButtonContainer>
-          <S.Page>1 / 3</S.Page>
-          <Button disabled={nextDisabled} onClick={onNext}>
-            다음
-          </Button>
-        </S.ButtonContainer>
-      </S.BottomContainer>
-    </div>
+    <>
+      <Head>
+        <title>회원가입 / 정보입력 - 휘뚜루마뚜루</title>
+      </Head>
+      <div>
+        <S.Title>정보 입력</S.Title>
+        <S.InputContainer>
+          <FormInput
+            ref={emailRef}
+            title="이메일"
+            placeholder="이메일을 입력해주세요..."
+            name="email"
+            autoComplete="username"
+            type="email"
+            onChange={onChange}
+            value={email}
+            disabled={isEmailConfirmationed}
+          />
+          <FormInput
+            title="비밀번호"
+            placeholder="비밀번호를 입력해주세요..."
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            onChange={onChange}
+            value={password}
+            ref={passwordRef}
+            info={`비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자가 포함된 8 ~ 16자로 구성되어야 합니다.`}
+          />
+          <FormInput
+            title="비밀번호 확인"
+            placeholder="비밀번호를 입력해주세요..."
+            name="passwordConfirmation"
+            type="password"
+            autoComplete="current-password"
+            onChange={onChange}
+            value={passwordConfirmation}
+            ref={passwordConfirmationRef}
+          />
+        </S.InputContainer>
+        <S.BottomContainer>
+          <S.ToLogin>
+            <Link href="/login">로그인으로</Link>
+          </S.ToLogin>
+          <S.ButtonContainer>
+            <S.Page>1 / 3</S.Page>
+            <Button disabled={nextDisabled} onClick={onNext}>
+              다음
+            </Button>
+          </S.ButtonContainer>
+        </S.BottomContainer>
+      </div>
+    </>
   );
 };
 

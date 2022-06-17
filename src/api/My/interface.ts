@@ -4,7 +4,7 @@ interface GetProfileResponse {
   img: string | null;
 }
 
-export interface DiaryItem {
+interface DiaryItem {
   diaryId: number;
   currentUserImg: string | null;
   mateImg: string | null;
@@ -15,4 +15,13 @@ export interface DiaryItem {
 
 type GetMyDiaryListResponse = DiaryItem[];
 
-export type { GetProfileResponse, GetMyDiaryListResponse };
+interface GetCodeResponse {
+  code: string;
+}
+
+export type {
+  GetProfileResponse,
+  GetMyDiaryListResponse,
+  DiaryItem,
+  GetCodeResponse,
+};

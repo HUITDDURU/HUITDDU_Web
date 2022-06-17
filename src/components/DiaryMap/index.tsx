@@ -2,7 +2,6 @@ import { useTheme } from "@emotion/react";
 import moment from "moment";
 import React, { Fragment, memo, useMemo, useRef } from "react";
 import { DiaryProgressItem } from "../../api/Main/interface";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useDiaryProgress } from "../../queries/Main";
 import * as S from "./styles";
 
@@ -143,11 +142,7 @@ const DiaryMap = () => {
     });
   }, [colors, isError, isLoading, list, theme.colors.primary]);
 
-  return (
-    <S.Container className={ANIMATED_CLASS} ref={containerRef}>
-      {renderColumn}
-    </S.Container>
-  );
+  return <S.Container ref={containerRef}>{renderColumn}</S.Container>;
 };
 
 export default memo(DiaryMap);

@@ -1,5 +1,6 @@
 import { Image } from "@nextui-org/react";
 import { NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useCallback, useEffect, useRef } from "react";
@@ -89,72 +90,77 @@ const ProfileContainer: NextPage = () => {
   }, [checkEmail]);
 
   return (
-    <div>
-      <S.Title>프로필 정보 입력</S.Title>
-      <S.InputContainer>
-        <FormInput
-          title="닉네임"
-          placeholder="닉네임을 입력해주세요..."
-          onChange={onChangeHandler}
-          value={nickname}
-          name="nickname"
-        />
-        <FormInput
-          title="한줄소개"
-          placeholder="한줄소개를 입력해주세요..."
-          onChange={onChangeHandler}
-          value={intro}
-          name="intro"
-        />
-        <div>
-          <S.Description>프로필 사진</S.Description>
-          {profilePicture && (
-            <S.ProfileWrapper>
-              <S.ProfileContainer>
-                <Image
-                  width="171px"
-                  height="171px"
-                  objectFit="cover"
-                  src={profilePicture}
-                  alt="프로필 이미지"
-                  showSkeleton
-                />
-              </S.ProfileContainer>
-            </S.ProfileWrapper>
-          )}
-          <S.ImageButton
-            onClick={(e) => {
-              e.preventDefault();
-              fileInputRef.current?.click();
-            }}
-          >
-            사진 업로드
-          </S.ImageButton>
-          <input
-            ref={fileInputRef}
-            onClick={(e) => e.stopPropagation()}
-            type="file"
-            accept="image/png, image/jpeg"
-            style={{ display: "none" }}
-            onChange={onFileChange}
+    <>
+      <Head>
+        <title>회원가입 / 프로필 정보 입력 - 휘뚜루마뚜루</title>
+      </Head>
+      <div>
+        <S.Title>프로필 정보 입력</S.Title>
+        <S.InputContainer>
+          <FormInput
+            title="닉네임"
+            placeholder="닉네임을 입력해주세요..."
+            onChange={onChangeHandler}
+            value={nickname}
+            name="nickname"
           />
-        </div>
-      </S.InputContainer>
-      <S.BottomContainer>
-        <S.ToLogin>
-          <Link href="/login">로그인으로</Link>
-        </S.ToLogin>
-        <S.ButtonContainer>
-          <S.Page>3 / 3</S.Page>
+          <FormInput
+            title="한줄소개"
+            placeholder="한줄소개를 입력해주세요..."
+            onChange={onChangeHandler}
+            value={intro}
+            name="intro"
+          />
+          <div>
+            <S.Description>프로필 사진</S.Description>
+            {profilePicture && (
+              <S.ProfileWrapper>
+                <S.ProfileContainer>
+                  <Image
+                    width="171px"
+                    height="171px"
+                    objectFit="cover"
+                    src={profilePicture}
+                    alt="프로필 이미지"
+                    showSkeleton
+                  />
+                </S.ProfileContainer>
+              </S.ProfileWrapper>
+            )}
+            <S.ImageButton
+              onClick={(e) => {
+                e.preventDefault();
+                fileInputRef.current?.click();
+              }}
+            >
+              사진 업로드
+            </S.ImageButton>
+            <input
+              ref={fileInputRef}
+              onClick={(e) => e.stopPropagation()}
+              type="file"
+              accept="image/png, image/jpeg"
+              style={{ display: "none" }}
+              onChange={onFileChange}
+            />
+          </div>
+        </S.InputContainer>
+        <S.BottomContainer>
           <S.ToLogin>
-            <Link href="/login/signup/enterinfo">이전</Link>
+            <Link href="/login">로그인으로</Link>
           </S.ToLogin>
-          <Button disabled={nextDisabled} onClick={onRegister}>
-            회원가입
-          </Button>
-        </S.ButtonContainer>
-      </S.BottomContainer>
-    </div>
+          <S.ButtonContainer>
+            <S.Page>3 / 3</S.Page>
+            <S.ToLogin>
+              <Link href="/login/signup/enterinfo">이전</Link>
+            </S.ToLogin>
+            <Button disabled={nextDisabled} onClick={onRegister}>
+              회원가입
+            </Button>
+          </S.ButtonContainer>
+        </S.BottomContainer>
+      </div>
+    </>
   );
 };
 

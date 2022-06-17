@@ -4,6 +4,7 @@ const enum queryKeys {
   matchedUser = "matched-user",
   diaryProgress = "diary-progress",
   diaryList = "diary-list",
+  code = "code",
 }
 
 export default queryKeys;

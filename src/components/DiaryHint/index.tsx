@@ -3,7 +3,6 @@ import axios from "axios";
 import { FC, memo, useEffect, useMemo, useState } from "react";
 import { UseQueryResult } from "react-query";
 import { GetMatchedUserResponse } from "../../api/Main/interface";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import DiaryHintSkeleton from "../DiaryHintSkeleton";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
@@ -52,7 +51,7 @@ const DiaryHint: FC<PropsType> = (props) => {
       <>
         <S.Content>
           <div>
-            <b>{data?.user2}</b>
+            <b>{data?.opponent}</b>
             님과
           </div>
           <div>일기를 주고받아보세요.</div>
@@ -62,14 +61,14 @@ const DiaryHint: FC<PropsType> = (props) => {
         </S.Flex>
       </>
     );
-  }, [data?.user2, error, isError]);
+  }, [data, error, isError]);
 
   if (isLoading) {
     return <DiaryHintSkeleton />;
   }
 
   return (
-    <S.Container className={ANIMATED_CLASS}>
+    <S.Container>
       <div>
         {diarys.slice(0, diaryCount).map((value, index) => (
           <S.Diary style={{ zIndex: diaryCount - index }} key={value}>

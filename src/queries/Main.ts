@@ -1,5 +1,5 @@
-import { useQuery } from "react-query";
-import { getDiaryProgress, getMatchedUser } from "../api/Main";
+import { useMutation, useQuery } from "react-query";
+import { exitMatching, getDiaryProgress, getMatchedUser } from "../api/Main";
 import queryKeys from "../constant/queryKeys";
 
 const useMatchedUser = () =>
@@ -7,7 +7,19 @@ const useMatchedUser = () =>
     refetchOnWindowFocus: false,
   });
 
+const useMatchedUserInterval = () =>
+  useQuery([queryKeys.matchedUser], () => getMatchedUser(), {
+    refetchInterval: 5000,
+  });
+
 const useDiaryProgress = () =>
   useQuery([queryKeys.diaryProgress], () => getDiaryProgress());
 
-export { useMatchedUser, useDiaryProgress };
+const useMatchingMutation = () => useMutation(exitMatching);
+
+export {
+  useMatchedUser,
+  useDiaryProgress,
+  useMatchingMutation,
+  useMatchedUserInterval,
+};

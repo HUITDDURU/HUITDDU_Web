@@ -46,6 +46,12 @@ export const Content = styled.div`
   }
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  column-gap: 24px;
+`;
+
 export const Stop = styled.a`
   padding: 0;
   background: transparent;
@@ -60,10 +66,4 @@ export const Stop = styled.a`
     text-decoration: underline;
     color: ${({ theme }) => theme.colors.grayscale.black};
   }
-`;
-
-export const Buttons = styled.div`
-  display: flex;
-  justify-content: center;
-  column-gap: 24px;
 `;

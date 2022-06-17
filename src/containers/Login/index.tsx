@@ -13,6 +13,7 @@ import * as S from "./styles";
 import cookie from "react-cookies";
 import useSignUpContext from "../../hooks/useSignUpContext";
 import { signUpInitalState } from "../../context";
+import Head from "next/head";
 
 interface LoginInput {
   email: string;
@@ -127,38 +128,43 @@ const LoginContainer: NextPage = () => {
   }, []);
 
   return (
-    <div>
-      <S.Title>로그인</S.Title>
-      <S.InputContainer>
-        <FormInput
-          title="이메일"
-          placeholder="이메일을 입력해주세요..."
-          value={email}
-          name="email"
-          autoComplete="username"
-          type="email"
-          onChange={onChange}
-          ref={emailRef}
-        />
-        <FormInput
-          title="비밀번호"
-          placeholder="비밀번호를 입력해주세요..."
-          value={password}
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          onChange={onChange}
-          ref={passwordRef}
-          onKeyDown={onKeyDown}
-        />
-      </S.InputContainer>
-      <S.ButtonContainer>
-        <BorderButton onClick={onSignUpClick}>회원가입</BorderButton>
-        <Button disabled={loginDisabled} onClick={onLoginClick}>
-          로그인
-        </Button>
-      </S.ButtonContainer>
-    </div>
+    <>
+      <Head>
+        <title>로그인으로 시작하기 - 휘뚜루마뚜루</title>
+      </Head>
+      <div>
+        <S.Title>로그인</S.Title>
+        <S.InputContainer>
+          <FormInput
+            title="이메일"
+            placeholder="이메일을 입력해주세요..."
+            value={email}
+            name="email"
+            autoComplete="username"
+            type="email"
+            onChange={onChange}
+            ref={emailRef}
+          />
+          <FormInput
+            title="비밀번호"
+            placeholder="비밀번호를 입력해주세요..."
+            value={password}
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            onChange={onChange}
+            ref={passwordRef}
+            onKeyDown={onKeyDown}
+          />
+        </S.InputContainer>
+        <S.ButtonContainer>
+          <BorderButton onClick={onSignUpClick}>회원가입</BorderButton>
+          <Button disabled={loginDisabled} onClick={onLoginClick}>
+            로그인
+          </Button>
+        </S.ButtonContainer>
+      </div>
+    </>
   );
 };
 
