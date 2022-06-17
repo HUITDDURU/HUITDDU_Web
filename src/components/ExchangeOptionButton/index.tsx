@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC, memo } from "react";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import * as S from "./styles";
 
 interface PropsType {
@@ -19,7 +18,7 @@ const ExchangeOptionButton: FC<PropsType> = ({
 }) => {
   return (
     <Link href={to} passHref>
-      <S.Button className={ANIMATED_CLASS}>
+      <S.Button>
         <S.ButtonInner>
           <Image src={image} alt="option" />
         </S.ButtonInner>

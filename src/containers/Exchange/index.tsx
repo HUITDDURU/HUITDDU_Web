@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import * as S from "./styles";
 import RandomUser from "../../assets/images/random-user.svg";
 import Friend from "../../assets/images/friend.svg";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import ExchangeOptionButton from "../../components/ExchangeOptionButton";
 import Head from "next/head";
 
@@ -13,7 +12,7 @@ const ExchangeContainer: NextPage = () => {
         <title>일기 교환 시작하기 - 휘뚜루마뚜루</title>
       </Head>
       <S.Container>
-        <S.Title className={ANIMATED_CLASS}>일기 교환 시작하기</S.Title>
+        <S.Title>일기 교환 시작하기</S.Title>
         <S.ButtonContainer>
           <S.ButtonWrapper>
             <ExchangeOptionButton

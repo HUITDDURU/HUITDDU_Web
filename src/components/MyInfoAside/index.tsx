@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useProfile, useProfileMutation } from "../../queries/My";
 import * as S from "./styles";
 import DefaultImage from "../../assets/images/default-user.png";
@@ -46,7 +45,7 @@ const MyInfoAside = () => {
   };
 
   return (
-    <S.Container className={ANIMATED_CLASS}>
+    <S.Container>
       <S.Profile onClick={onProfileClick}>
         {isSuccess && (
           <ImageWithDefaultImage

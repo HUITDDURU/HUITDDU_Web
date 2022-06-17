@@ -8,7 +8,6 @@ import { DiaryWriteSSRProps } from "../../../pages/diary/[id]";
 import BorderBrandButton from "../../components/Buttons/BorderBrandButton";
 import Button from "../../components/Buttons/Button";
 import Editor from "../../components/Editor";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import { useDiaryMutation } from "../../queries/Diary";
 import { useImageMutation } from "../../queries/Image";
 import * as S from "./styles";
@@ -210,9 +209,9 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
         <title>일기 작성 - 휘뚜루마뚜루</title>
       </Head>
       <S.Container>
-        <S.Title className={ANIMATED_CLASS}>일기 쓰기</S.Title>
+        <S.Title>일기 쓰기</S.Title>
         <S.ContentContainer>
-          <div className={ANIMATED_CLASS}>
+          <div>
             <S.Subtitle>제목</S.Subtitle>
             <S.TitleInput
               value={title}
@@ -221,7 +220,7 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
               maxLength={100}
             />
           </div>
-          <div className={ANIMATED_CLASS}>
+          <div>
             <S.Subtitle>날짜</S.Subtitle>
             <S.DateOuter>
               <S.DateContainer>{renderDates}</S.DateContainer>
@@ -230,11 +229,11 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
               </span>
             </S.DateOuter>
           </div>
-          <div className={ANIMATED_CLASS}>
+          <div>
             <S.Subtitle>기분</S.Subtitle>
             <S.FeelingContainer>{renderFeelings}</S.FeelingContainer>
           </div>
-          <div className={ANIMATED_CLASS}>
+          <div>
             <S.Subtitle>사진</S.Subtitle>
             {imageUrl ? (
               <S.ImageContainer>
@@ -263,12 +262,12 @@ const WriteDiaryContainer: FC<DiaryWriteSSRProps> = ({ id }) => {
               onChange={onFileChange}
             />
           </div>
-          <div className={ANIMATED_CLASS}>
+          <div>
             <S.Subtitle>내용</S.Subtitle>
             <Editor value={content} onChange={(e) => setContent(e)} />
           </div>
         </S.ContentContainer>
-        <S.Buttons className={ANIMATED_CLASS}>
+        <S.Buttons>
           <Button onClick={onExchange} disabled={title.trim().length <= 0}>
             교환
           </Button>

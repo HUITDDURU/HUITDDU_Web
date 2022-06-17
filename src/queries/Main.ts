@@ -7,9 +7,19 @@ const useMatchedUser = () =>
     refetchOnWindowFocus: false,
   });
 
+const useMatchedUserInterval = () =>
+  useQuery([queryKeys.matchedUser], () => getMatchedUser(), {
+    refetchInterval: 5000,
+  });
+
 const useDiaryProgress = () =>
   useQuery([queryKeys.diaryProgress], () => getDiaryProgress());
 
 const useMatchingMutation = () => useMutation(exitMatching);
 
-export { useMatchedUser, useDiaryProgress, useMatchingMutation };
+export {
+  useMatchedUser,
+  useDiaryProgress,
+  useMatchingMutation,
+  useMatchedUserInterval,
+};

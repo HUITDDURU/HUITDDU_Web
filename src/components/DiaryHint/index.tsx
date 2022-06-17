@@ -3,7 +3,6 @@ import axios from "axios";
 import { FC, memo, useEffect, useMemo, useState } from "react";
 import { UseQueryResult } from "react-query";
 import { GetMatchedUserResponse } from "../../api/Main/interface";
-import ANIMATED_CLASS from "../../constant/animatedClass";
 import DiaryHintSkeleton from "../DiaryHintSkeleton";
 import DiarySVG from "../DiarySVG";
 import * as S from "./styles";
@@ -69,7 +68,7 @@ const DiaryHint: FC<PropsType> = (props) => {
   }
 
   return (
-    <S.Container className={ANIMATED_CLASS}>
+    <S.Container>
       <div>
         {diarys.slice(0, diaryCount).map((value, index) => (
           <S.Diary style={{ zIndex: diaryCount - index }} key={value}>
