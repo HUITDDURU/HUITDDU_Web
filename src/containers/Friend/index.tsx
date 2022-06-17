@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import ANIMATED_CLASS from "../../constant/animatedClass";
 import useInput, { EventFilter } from "../../hooks/useInput";
@@ -32,28 +33,33 @@ const FriendContainer = () => {
   const [inputProps, [value]] = useInput("", evnetFilter);
 
   return (
-    <S.Container>
-      <S.Title className={ANIMATED_CLASS}>당신의 코드는 {data?.code}</S.Title>
-      <S.CodeDescription className={ANIMATED_CLASS}>
-        친구에게 코드를 보내고 일기 교환을 시작하세요.
-      </S.CodeDescription>
-      <S.Or className={ANIMATED_CLASS}>또는</S.Or>
-      <S.LastDescription className={ANIMATED_CLASS}>
-        친구에게 받은 코드를 입력해서 일기 교환을 시작하세요.
-      </S.LastDescription>
-      <div className={ANIMATED_CLASS}>
-        <S.CodeInput {...inputProps} placeholder="입력해주세요..." />
-      </div>
-      <div className={ANIMATED_CLASS}>
-        <S.Enter
-          className={`${
-            value.toString().length >= maxCodeLength ? "active" : ""
-          }`}
-        >
-          Enter 키로 시작
-        </S.Enter>
-      </div>
-    </S.Container>
+    <>
+      <Head>
+        <title>친구와 일기교환 - 휘뚜루마뚜루</title>
+      </Head>
+      <S.Container>
+        <S.Title className={ANIMATED_CLASS}>당신의 코드는 {data?.code}</S.Title>
+        <S.CodeDescription className={ANIMATED_CLASS}>
+          친구에게 코드를 보내고 일기 교환을 시작하세요.
+        </S.CodeDescription>
+        <S.Or className={ANIMATED_CLASS}>또는</S.Or>
+        <S.LastDescription className={ANIMATED_CLASS}>
+          친구에게 받은 코드를 입력해서 일기 교환을 시작하세요.
+        </S.LastDescription>
+        <div className={ANIMATED_CLASS}>
+          <S.CodeInput {...inputProps} placeholder="입력해주세요..." />
+        </div>
+        <div className={ANIMATED_CLASS}>
+          <S.Enter
+            className={`${
+              value.toString().length >= maxCodeLength ? "active" : ""
+            }`}
+          >
+            Enter 키로 시작
+          </S.Enter>
+        </div>
+      </S.Container>
+    </>
   );
 };
 

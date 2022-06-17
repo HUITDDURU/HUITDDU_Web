@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { memo, useCallback, useEffect, useRef } from "react";
@@ -58,33 +59,38 @@ const EmailContainer: NextPage = () => {
   }, [checkEmail]);
 
   return (
-    <div>
-      <S.Title>이메일 인증</S.Title>
-      <S.InputContainer>
-        <FormInput
-          ref={codeRef}
-          title="이메일 인증 코드"
-          value={certificationCode}
-          disabled={isEmailConfirmationed}
-          onChange={onChangeHandler}
-          placeholder="이메일 인증 코드를 입력해주세요..."
-        />
-      </S.InputContainer>
-      <S.BottomContainer>
-        <S.ToLogin>
-          <Link href="/login">로그인으로</Link>
-        </S.ToLogin>
-        <S.ButtonContainer>
-          <S.Page>2 / 3</S.Page>
+    <>
+      <Head>
+        <title>회원가입 / 이메일 인증 - 휘뚜루마뚜루</title>
+      </Head>
+      <div>
+        <S.Title>이메일 인증</S.Title>
+        <S.InputContainer>
+          <FormInput
+            ref={codeRef}
+            title="이메일 인증 코드"
+            value={certificationCode}
+            disabled={isEmailConfirmationed}
+            onChange={onChangeHandler}
+            placeholder="이메일 인증 코드를 입력해주세요..."
+          />
+        </S.InputContainer>
+        <S.BottomContainer>
           <S.ToLogin>
-            <Link href="/login/signup/enterinfo">이전</Link>
+            <Link href="/login">로그인으로</Link>
           </S.ToLogin>
-          <Button disabled={isNextDisabled} onClick={onNextClick}>
-            {isEmailConfirmationed ? "다음" : "인증"}
-          </Button>
-        </S.ButtonContainer>
-      </S.BottomContainer>
-    </div>
+          <S.ButtonContainer>
+            <S.Page>2 / 3</S.Page>
+            <S.ToLogin>
+              <Link href="/login/signup/enterinfo">이전</Link>
+            </S.ToLogin>
+            <Button disabled={isNextDisabled} onClick={onNextClick}>
+              {isEmailConfirmationed ? "다음" : "인증"}
+            </Button>
+          </S.ButtonContainer>
+        </S.BottomContainer>
+      </div>
+    </>
   );
 };
 

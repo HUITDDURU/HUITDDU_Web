@@ -10,7 +10,7 @@ const NotFoundContainer: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>페이지를 찾을 수 없습니다.</title>
+        <title>페이지를 찾을 수 없습니다. - 휘뚜루마뚜루</title>
       </Head>
       <S.Container>
         <div>
