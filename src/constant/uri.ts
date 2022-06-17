@@ -12,6 +12,7 @@ const enum uri {
   diary = "/diary",
   list = "/list",
   code = "/code",
+  mate = "/mate",
 }
 
 export default uri;
