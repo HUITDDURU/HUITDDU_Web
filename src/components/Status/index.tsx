@@ -71,6 +71,8 @@ const Status: FC<PropsType> = (props) => {
                 height={150}
                 src={data?.myImage}
                 defaultImage={DefaultImage}
+                objectFit="cover"
+                objectPosition="center"
               />
             </S.Profile>
           </S.ProfileContainer>
@@ -81,6 +83,8 @@ const Status: FC<PropsType> = (props) => {
                 height={150}
                 src={data?.opponentImage}
                 defaultImage={DefaultImage}
+                objectFit="cover"
+                objectPosition="center"
               />
             </S.Profile>
           </S.ProfileContainer>
